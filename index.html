@@ -26,7 +26,7 @@
       --font-display:  'Playfair Display', Georgia, serif;
       --font-body:     'DM Sans', system-ui, sans-serif;
       --max-w:         1200px;
-      --nav-h:         72px;
+      --nav-h:         148px;
     }
 
     /* ─── RESET & BASE ─── */
@@ -47,9 +47,9 @@
     .gold { color: var(--color-gold); }
     .section-label {
       font-family: var(--font-body);
-      font-size: 11px;
+      font-size: 14px;
       font-weight: 600;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-gold);
       display: block;
@@ -79,7 +79,7 @@
       top: 0;
       z-index: 100;
       height: var(--nav-h);
-      background: var(--bg-primary);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -91,7 +91,7 @@
       justify-content: space-between;
     }
     .nav-logo img {
-      height: 40px;
+      height: 120px;
       width: auto;
     }
     .nav-links {
@@ -105,9 +105,28 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--color-muted);
-      transition: color 0.2s;
+      transition: color 0.25s, letter-spacing 0.25s;
+      position: relative;
+      padding-bottom: 4px;
     }
-    .nav-links a:hover { color: var(--color-text); }
+    /* Razor-slash underline: zlatá linka se šikmým skluzem zleva */
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 1.5px;
+      background: var(--color-gold);
+      transform: scaleX(0) skewX(-20deg);
+      transform-origin: left center;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-links a:not(.nav-cta):hover {
+      color: var(--color-text);
+      letter-spacing: 0.13em;
+    }
+    .nav-links a:not(.nav-cta):hover::after {
+      transform: scaleX(1) skewX(-20deg);
+    }
     .nav-cta {
       background: var(--color-gold) !important;
       color: #fff !important;
@@ -140,35 +159,59 @@
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* Mobile nav */
-    .nav-mobile {
+    /* Backdrop */
+    .nav-mobile-backdrop {
       display: none;
       position: fixed;
-      top: var(--nav-h);
-      left: 0; right: 0; bottom: 0;
+      inset: 0;
+      background: rgba(28,25,23,0.45);
+      z-index: 98;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .nav-mobile-backdrop.open {
+      display: block;
+      opacity: 1;
+    }
+    /* Drawer */
+    .nav-mobile {
+      display: flex;
+      position: fixed;
+      top: 0; bottom: 0; right: 0;
+      width: 75vw;
+      max-width: 320px;
       background: var(--bg-primary);
       z-index: 99;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      gap: 32px;
+      gap: 8px;
+      padding: 48px 40px;
+      box-shadow: -8px 0 40px rgba(28,25,23,0.15);
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      border-left: 1px solid var(--border);
     }
-    .nav-mobile.open { display: flex; }
+    .nav-mobile.open { transform: translateX(0); }
     .nav-mobile a {
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 700;
       color: var(--color-text);
+      padding: 8px 0;
     }
     .nav-mobile a:hover { color: var(--color-gold); }
     .nav-mobile .nav-cta {
       background: var(--color-gold);
       color: #fff;
-      padding: 14px 36px;
+      padding: 14px 28px;
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       border-radius: 2px;
+      margin-top: 16px;
+      font-weight: 600;
     }
 
     /* ══════════════════════════════════════════
@@ -381,48 +424,12 @@
       text-transform: uppercase;
       color: var(--color-muted);
     }
-    .about-images {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 16px;
-    }
-    .about-img-main {
-      grid-column: 1 / -1;
-      border-radius: 2px;
-      overflow: hidden;
-      aspect-ratio: 16/9;
-    }
-    .about-img-main img,
-    .about-img-sm img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    .about-img-main:hover img,
-    .about-img-sm:hover img { transform: scale(1.04); }
-    .about-img-sm {
-      border-radius: 2px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-    }
 
     /* ══════════════════════════════════════════
-       VIDEO
+       VIDEO (v about sekci)
     ══════════════════════════════════════════ */
-    #video-section {
-      background: var(--bg-primary);
-      padding: 80px 0 0;
-    }
-    .video-wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .video-label-row {
-      margin-bottom: 20px;
-      text-align: center;
+    .about-video {
+      align-self: center;
     }
     .video-responsive {
       position: relative;
@@ -469,6 +476,12 @@
       margin-left: auto;
       padding-bottom: 6px;
     }
+    .services-desc--highlight {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--color-gold);
+      line-height: 1.6;
+    }
     /* Price list */
     .price-list {
       border-top: 1px solid var(--border);
@@ -512,59 +525,152 @@
     }
     /* Exclusive box */
     .exclusive-box {
-      margin-top: 56px;
-      background: var(--bg-dark);
-      border: 1px solid rgba(184,146,42,0.3);
-      border-radius: 4px;
-      padding: 48px 56px;
+      margin-top: 72px;
+      position: relative;
+      background: #0e0c0a;
+      border: 1px solid rgba(184,146,42,0.5);
+      border-radius: 6px;
+      padding: 64px 72px;
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 48px;
+      grid-template-columns: 1fr 280px;
+      gap: 64px;
       align-items: center;
+      overflow: hidden;
+      /* subtle gold shimmer on hover */
+      transition: box-shadow 0.4s ease;
+    }
+    .exclusive-box:hover {
+      box-shadow: 0 0 0 1px rgba(184,146,42,0.6), 0 32px 80px rgba(0,0,0,0.5);
+    }
+    /* Gold corner accents */
+    .exclusive-box::before,
+    .exclusive-box::after {
+      content: '';
+      position: absolute;
+      width: 36px; height: 36px;
+      border-color: var(--color-gold-lt);
+      border-style: solid;
+      opacity: 0.7;
+    }
+    .exclusive-box::before {
+      top: 16px; left: 16px;
+      border-width: 1.5px 0 0 1.5px;
+    }
+    .exclusive-box::after {
+      bottom: 16px; right: 16px;
+      border-width: 0 1.5px 1.5px 0;
+    }
+    /* Large watermark text */
+    .exclusive-box .ex-watermark {
+      position: absolute;
+      right: -20px; bottom: -30px;
+      font-family: var(--font-display);
+      font-size: 160px;
+      font-weight: 900;
+      color: rgba(184,146,42,0.05);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+    /* Thin gold top line */
+    .exclusive-box .ex-topline {
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
     }
     .exclusive-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--color-gold);
-      border: 1px solid var(--color-gold);
-      padding: 4px 12px;
+      color: #0e0c0a;
+      background: linear-gradient(135deg, var(--color-gold-lt), var(--color-gold));
+      padding: 6px 16px;
       border-radius: 2px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
+    .exclusive-badge::before { content: '◆'; font-size: 8px; }
     .exclusive-title {
       font-family: var(--font-display);
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(32px, 3.5vw, 48px);
       font-weight: 700;
       color: #fff;
-      margin-bottom: 20px;
-      line-height: 1.2;
+      margin-bottom: 10px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .exclusive-subtitle {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold-lt);
+      margin-bottom: 32px;
+      opacity: 0.8;
     }
     .exclusive-features {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 32px;
     }
     .exclusive-features li {
-      font-size: 14px;
-      color: rgba(255,255,255,0.65);
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.7);
       display: flex;
-      align-items: center;
-      gap: 10px;
+      align-items: baseline;
+      gap: 9px;
+      line-height: 1.5;
     }
     .exclusive-features li::before {
-      content: '—';
+      content: '◆';
+      font-size: 6px;
       color: var(--color-gold);
-      font-weight: 600;
       flex-shrink: 0;
+      position: relative;
+      top: -1px;
     }
-    .exclusive-cta { text-align: center; }
-    .exclusive-cta .btn-primary {
+    /* Right CTA column */
+    .exclusive-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+      border-left: 1px solid rgba(184,146,42,0.2);
+      padding-left: 48px;
+    }
+    .exclusive-cta-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .exclusive-cta .btn-vip {
       display: block;
       text-align: center;
       white-space: nowrap;
+      background: linear-gradient(135deg, var(--color-gold-lt) 0%, var(--color-gold) 50%, #9a7820 100%);
+      color: #0e0c0a;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 28px;
+      border-radius: 2px;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 24px rgba(184,146,42,0.35);
+    }
+    .exclusive-cta .btn-vip:hover { opacity: 0.9; transform: translateY(-2px); }
+    .exclusive-cta-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.5;
     }
     .services-cta-row {
       margin-top: 64px;
@@ -579,131 +685,267 @@
     /* ══════════════════════════════════════════
        GIFT VOUCHER
     ══════════════════════════════════════════ */
-    #voucher { position: relative; overflow: hidden; }
-    .voucher-inner {
+    /* ── VOUCHER SECTION ── */
+    #voucher {
       background: var(--bg-dark);
+      padding: 100px 0 110px;
       position: relative;
-      padding: 100px 0;
     }
-    .voucher-deco {
-      position: absolute;
-      right: -20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: var(--font-display);
-      font-size: clamp(100px, 18vw, 220px);
-      font-weight: 900;
-      color: rgba(255,255,255,0.03);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-      letter-spacing: -0.04em;
+    .voucher-section-label {
+      text-align: center;
+      margin-bottom: 48px;
     }
-    .voucher-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-    .voucher-title {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 4.5vw, 60px);
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.05;
-      margin-bottom: 28px;
-    }
-    .voucher-title em {
-      font-style: italic;
-      color: var(--color-gold-lt);
-    }
-    .voucher-body {
-      font-size: 16px;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 12px;
-    }
-    .voucher-body strong { color: #fff; font-weight: 600; }
-    .voucher-validity {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--color-gold-lt);
-      margin-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 24px;
-    }
-    /* Gift card visual */
+
+    /* The physical voucher card */
     .voucher-card {
-      perspective: 800px;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
     }
-    .vc-inner {
-      background: linear-gradient(135deg, #2a2218 0%, #1c1610 60%, #2e2416 100%);
-      border: 1px solid rgba(184,146,42,0.35);
-      border-radius: 12px;
-      padding: 40px 40px 36px;
+    .vc-paper {
+      background: linear-gradient(160deg, #fdfaf3 0%, #f5edd8 50%, #fdfaf3 100%);
+      border-radius: 6px;
+      box-shadow:
+        0 0 0 1px rgba(184,146,42,0.5),
+        0 0 0 5px rgba(184,146,42,0.08),
+        0 0 0 6px rgba(184,146,42,0.3),
+        0 32px 80px rgba(0,0,0,0.55);
+      display: grid;
+      grid-template-columns: 1fr 1px 220px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(184,146,42,0.2);
     }
-    .vc-inner::before {
+    /* Watermark diagonal text */
+    .vc-paper::before {
+      content: 'GIFT VOUCHER';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 900;
+      color: rgba(184,146,42,0.05);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Main body ── */
+    .vc-body {
+      padding: 52px 52px 48px;
+      position: relative;
+    }
+    /* Corner ornaments on main body */
+    .vc-body::before,
+    .vc-body::after {
       content: '';
       position: absolute;
-      top: -60px; right: -60px;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(184,146,42,0.12) 0%, transparent 70%);
+      width: 32px; height: 32px;
+      border-color: rgba(184,146,42,0.5);
+      border-style: solid;
     }
-    .vc-inner::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-    }
-    .vc-top {
+    .vc-body::before { top: 18px; left: 18px; border-width: 1.5px 0 0 1.5px; }
+    .vc-body::after  { bottom: 18px; left: 18px; border-width: 0 0 1.5px 1.5px; }
+
+    .vc-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 32px;
-    }
-    .vc-logo {
-      height: 38px;
-      width: auto;
-    }
-    .vc-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--color-gold-lt);
-      border: 1px solid rgba(184,146,42,0.4);
-      padding: 5px 10px;
-      border-radius: 2px;
-    }
-    .vc-divider {
-      height: 1px;
-      background: linear-gradient(90deg, rgba(184,146,42,0.5), rgba(184,146,42,0.1));
       margin-bottom: 28px;
     }
-    .vc-bottom {}
-    .vc-tagline {
+    .vc-logo { height: 72px; width: auto; }
+    .vc-badge {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      border: 1px solid rgba(184,146,42,0.4);
+      padding: 7px 16px;
+      border-radius: 2px;
+    }
+    .vc-rule {
+      height: 1px;
+      background: linear-gradient(90deg, var(--color-gold), rgba(184,146,42,0.15));
+      margin-bottom: 28px;
+    }
+    .vc-heading {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: #1c1710;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .vc-heading em {
       font-style: italic;
-      color: #fff;
+      color: var(--color-gold);
+    }
+    .vc-tagline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(28,23,16,0.4);
+      margin-bottom: 24px;
+    }
+    .vc-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(28,23,16,0.65);
+      max-width: 420px;
       margin-bottom: 8px;
     }
-    .vc-sub {
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+    .vc-text strong { color: #1c1710; font-weight: 700; }
+    .vc-text-sm {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(28,23,16,0.55);
+      max-width: 420px;
     }
+
+    /* ── Perforated divider ── */
+    .vc-perf {
+      width: 1px;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(184,146,42,0.5) 0px,
+        rgba(184,146,42,0.5) 8px,
+        transparent 8px,
+        transparent 16px
+      );
+      position: relative;
+      flex-shrink: 0;
+    }
+    /* Semicircle notches */
+    .vc-perf::before,
+    .vc-perf::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px; height: 10px;
+      background: var(--bg-dark);
+      border-radius: 0 0 10px 10px;
+    }
+    .vc-perf::before { top: -1px; border-radius: 0 0 10px 10px; }
+    .vc-perf::after  { bottom: -1px; border-radius: 10px 10px 0 0; }
+
+    /* ── Stub ── */
+    .vc-stub {
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(160deg, rgba(184,146,42,0.06) 0%, rgba(184,146,42,0.02) 100%);
+    }
+    .vc-stub::before,
+    .vc-stub::after {
+      content: '';
+      position: absolute;
+      width: 28px; height: 28px;
+      border-color: rgba(184,146,42,0.5);
+      border-style: solid;
+    }
+    .vc-stub::before { top: 18px; right: 18px; border-width: 1.5px 1.5px 0 0; }
+    .vc-stub::after  { bottom: 18px; right: 18px; border-width: 0 1.5px 1.5px 0; }
+
+    .vc-stub-logo { height: 56px; width: auto; margin-bottom: 16px; }
+    .vc-stub-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(184,146,42,0.25);
+      margin: 12px 0;
+    }
+    .vc-stub-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(28,23,16,0.4);
+      margin-bottom: 4px;
+    }
+    .vc-stub-value {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #1c1710;
+    }
+    .vc-stub-validity {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-gold);
+      letter-spacing: 0.05em;
+    }
+    .vc-stub-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--color-gold-lt), var(--color-gold));
+      color: #1c1710;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 12px 8px;
+      border-radius: 2px;
+      margin-top: 4px;
+      text-align: center;
+      transition: opacity 0.2s;
+      box-shadow: 0 4px 16px rgba(184,146,42,0.3);
+    }
+    .vc-stub-btn:hover { opacity: 0.85; }
+
+    /* scissors hint at bottom */
+    .vc-scissors {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.15em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .vc-scissors::before,
+    .vc-scissors::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: repeating-linear-gradient(
+        to right,
+        rgba(255,255,255,0.15) 0px,
+        rgba(255,255,255,0.15) 6px,
+        transparent 6px,
+        transparent 12px
+      );
+    }
+
     @media (max-width: 900px) {
-      .voucher-grid { grid-template-columns: 1fr; gap: 48px; }
-      .voucher-inner { padding: 80px 0; }
+      .vc-paper { grid-template-columns: 1fr; grid-template-rows: auto 1px auto; }
+      .vc-perf {
+        width: 100%; height: 1px;
+        background-image: repeating-linear-gradient(
+          to right,
+          rgba(184,146,42,0.5) 0px,
+          rgba(184,146,42,0.5) 8px,
+          transparent 8px,
+          transparent 16px
+        );
+      }
+      .vc-perf::before { top: 50%; left: -1px; transform: translateY(-50%); width: 10px; height: 20px; border-radius: 0 10px 10px 0; }
+      .vc-perf::after  { top: 50%; right: -1px; left: auto; transform: translateY(-50%); width: 10px; height: 20px; border-radius: 10px 0 0 10px; }
+      .vc-stub { flex-direction: row; flex-wrap: wrap; gap: 16px; padding: 32px; text-align: left; }
+      .vc-stub-logo { margin-bottom: 0; }
+      .vc-body { padding: 40px 32px; }
+    }
+    @media (max-width: 600px) {
+      .vc-body { padding: 32px 24px; }
+      .vc-stub { padding: 24px; flex-direction: column; text-align: center; }
     }
 
     /* ══════════════════════════════════════════
@@ -956,14 +1198,18 @@
     }
     .social-link:hover { border-color: var(--color-gold); color: var(--color-gold); }
     /* Map */
-    .contact-map {
+    .contact-hours {
+      align-self: start;
+    }
+    .contact-map-full {
+      margin-top: 64px;
       border-radius: 4px;
       overflow: hidden;
       box-shadow: 0 8px 48px rgba(28,25,23,0.1);
     }
-    .contact-map iframe {
+    .contact-map-full iframe {
       width: 100%;
-      height: 500px;
+      height: 420px;
       border: none;
       display: block;
     }
@@ -1138,13 +1384,41 @@
     #back-to-top.visible { display: flex; }
 
     /* ══════════════════════════════════════════
+       SHAPE DIVIDERS — razor blade diagonal cuts
+    ══════════════════════════════════════════ */
+    #about, #services, #team, #gallery, #contact {
+      position: relative;
+    }
+    /* Shared divider shape — right-to-left diagonal (razor sweep) */
+    #about::after,
+    #services::after,
+    #team::after,
+    #gallery::after,
+    #contact::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 72px;
+      pointer-events: none;
+      /* triangle: top-right → bottom-right → bottom-left */
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+    /* Each ::after uses the NEXT section's background */
+    #about::after    { background: var(--bg-secondary); } /* → services */
+    #services::after { background: var(--bg-dark);      } /* → voucher  */
+    #team::after     { background: var(--bg-primary);   } /* → gallery  */
+    #gallery::after  { background: var(--bg-secondary); } /* → contact  */
+    #contact::after  { background: var(--bg-dark);      } /* → footer   */
+
+    /* ══════════════════════════════════════════
        RESPONSIVE
     ══════════════════════════════════════════ */
     @media (max-width: 1024px) {
       .hero-content { padding: 64px 48px; }
       .about-grid { gap: 48px; }
-      .exclusive-box { grid-template-columns: 1fr; }
-      .exclusive-cta { text-align: left; }
+      .exclusive-box { grid-template-columns: 1fr; padding: 48px 40px; }
+      .exclusive-features { grid-template-columns: 1fr; }
+      .exclusive-cta { border-left: none; padding-left: 0; border-top: 1px solid rgba(184,146,42,0.2); padding-top: 32px; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-item:first-child { aspect-ratio: 3/4; }
     }
@@ -1172,7 +1446,7 @@
         grid-template-columns: 1fr;
         gap: 40px;
       }
-      .about-images { order: -1; }
+      .about-video { order: -1; }
       /* Services */
       .services-header { grid-template-columns: 1fr; gap: 16px; }
       .services-desc { margin-left: 0; }
@@ -1182,7 +1456,7 @@
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       /* Contact */
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-      .contact-map iframe { height: 320px; }
+      .contact-map-full iframe { height: 300px; }
       /* Footer */
       .footer-grid { grid-template-columns: 1fr; text-align: center; }
       .footer-social { justify-content: center; }
@@ -1223,6 +1497,7 @@
   </nav>
 
   <!-- Mobile nav overlay -->
+  <div class="nav-mobile-backdrop" id="nav-backdrop"></div>
   <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobilní menu">
     <a href="#services" class="nav-mobile-link">Ceník</a>
     <a href="#team" class="nav-mobile-link">Tým</a>
@@ -1252,7 +1527,7 @@
       </div>
     </div>
     <div class="hero-photo">
-      <img src="../barber/images/hero.jpg" alt="Barber při práci v Notorious Barbershop Kyjov" loading="eager" />
+      <img src="images/hero.jpg" alt="Barber při práci v Notorious Barbershop Kyjov" loading="eager" />
       <div class="hero-photo-badge">
         <strong>+420 771 153 666</strong>
         <span>Masarykovo nám. 17/6, Kyjov</span>
@@ -1295,50 +1570,17 @@
             Jsme čistě pánská zóna, kde je řemeslo na prvním místě a špičkový servis standardem, který si zaslouží každý gentleman.
             Místo odpočinku, kde se můžete nechat ostříhat, hladce oholit metodou HOT TOWEL nebo si jen nechat upravit vousy. Zabořte se do křesla — upravíme Vám vlasy a vousy přesně tak, jak zrovna potřebujete. Ne jak velí trendy, které mají slušet všem.
           </p>
-          <div class="about-stats">
-            <div class="stat-item">
-              <div class="stat-num">2</div>
-              <div class="stat-label">Barbeři</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-num">6+</div>
-              <div class="stat-label">Let tradice</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-num">9</div>
-              <div class="stat-label">Služeb</div>
-            </div>
+        </div>
+        <div class="about-video reveal reveal-delay-2">
+          <div class="video-responsive">
+            <iframe
+              src="https://www.youtube.com/embed/qyPDmeirfkY?rel=0"
+              title="Notorious Barbershop — video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
-        <div class="about-images reveal reveal-delay-2">
-          <div class="about-img-main">
-            <img src="../barber/images/about-1.png" alt="Interiér Notorious Barbershop" loading="lazy" />
-          </div>
-          <div class="about-img-sm">
-            <img src="../barber/images/about-2.png" alt="Detailní práce barbera" loading="lazy" />
-          </div>
-          <div class="about-img-sm">
-            <img src="../barber/images/work.jpg" alt="Výsledek práce barbera" loading="lazy" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ VIDEO ══ -->
-  <section id="video-section" aria-label="Video o barber shopu">
-    <div class="video-wrap reveal">
-      <div class="video-label-row">
-        <span class="section-label">Podívejte se</span>
-      </div>
-      <div class="video-responsive">
-        <iframe
-          src="https://www.youtube.com/embed/qyPDmeirfkY?rel=0&modestbranding=1"
-          title="Notorious Barbershop — video"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
       </div>
     </div>
   </section>
@@ -1351,7 +1593,7 @@
           <span class="section-label">Ceník</span>
           <h2 class="services-title">Naše služby</h2>
         </div>
-        <p class="services-desc">
+        <p class="services-desc services-desc--highlight">
           Každá návštěva zahrnuje espresso nebo jiný nápoj jako pozornost podniku. Rezervujte si termín online.
         </p>
       </div>
@@ -1410,20 +1652,24 @@
 
       <!-- Exclusive Box -->
       <div class="exclusive-box reveal">
+        <div class="ex-topline" aria-hidden="true"></div>
+        <div class="ex-watermark" aria-hidden="true">VIP</div>
         <div>
           <span class="exclusive-badge">Prémiový balíček</span>
-          <h3 class="exclusive-title">Exclusive<br />Notorious Box</h3>
+          <h3 class="exclusive-title">Exclusive Notorious Box</h3>
+          <p class="exclusive-subtitle">The Ultimate Gentleman Experience</p>
           <ul class="exclusive-features">
             <li>Mytí hlavy — relaxační péče</li>
-            <li>Střih a úprava vousů — precizní linie a styling</li>
-            <li>Holení břitvou — tradiční technika s horkým ručníkem</li>
-            <li>Masáž hlavy a obličeje — uvolnění a regenerace</li>
-            <li>Slupovací černá maska — čistá a svěží pleť</li>
-            <li>Prémiový alkohol a doutník jako pozornost podniku</li>
+            <li>Střih &amp; úprava vousů</li>
+            <li>Holení břitvou s horkým ručníkem</li>
+            <li>Masáž hlavy a obličeje</li>
+            <li>Slupovací černá maska</li>
+            <li>Prémiový alkohol &amp; doutník</li>
           </ul>
         </div>
         <div class="exclusive-cta">
-          <a href="https://notorious-barbershop-kyjov.reservio.com/" target="_blank" rel="noopener" class="btn-primary">
+          <span class="exclusive-cta-label">Rezervujte zážitek</span>
+          <a href="https://notorious-barbershop-kyjov.reservio.com/" target="_blank" rel="noopener" class="btn-vip">
             Rezervovat Box
           </a>
         </div>
@@ -1440,38 +1686,55 @@
 
   <!-- ══ GIFT VOUCHER ══ -->
   <section id="voucher" aria-label="Dárkové poukazy">
-    <div class="voucher-inner">
-      <div class="voucher-deco" aria-hidden="true">GIFT</div>
-      <div class="container voucher-grid">
-        <div class="voucher-text reveal">
-          <span class="section-label" style="color:var(--color-gold-pale);">Pro někoho výjimečného</span>
-          <h2 class="voucher-title">Dárkové<br /><em>Poukazy</em></h2>
-          <p class="voucher-body">
+    <div class="voucher-section-label reveal">
+      <span class="section-label" style="color:var(--color-gold-lt);">Pro někoho výjimečného</span>
+    </div>
+    <div class="voucher-card reveal">
+      <div class="vc-paper">
+
+        <!-- Main body -->
+        <div class="vc-body">
+          <div class="vc-header">
+            <img src="images/notorious-barber-shop-logo.webp" alt="Notorious Barbershop" class="vc-logo" />
+            <span class="vc-badge">Dárkový poukaz</span>
+          </div>
+          <div class="vc-rule"></div>
+          <h2 class="vc-heading">Darujte <em>styl</em><br />&amp; zážitek</h2>
+          <p class="vc-tagline">Notorious Barbershop · Kyjov · Est. 2019</p>
+          <p class="vc-text">
             Hledáte originální dárek pro muže, přítele, kamaráda?<br />
             Darujte mu <strong>STYL</strong> i <strong>ZÁŽITEK</strong>.
           </p>
-          <p class="voucher-body">
+          <p class="vc-text-sm">
             Zastavte se u nás v Barbershopu a my vám vybereme ten nejvhodnější.
           </p>
-          <p class="voucher-validity">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Platnost poukazu 6 měsíců od data vystavení
-          </p>
         </div>
-        <div class="voucher-card reveal reveal-delay-2">
-          <div class="vc-inner">
-            <div class="vc-top">
-              <img src="images/notorious-barber-shop-logo.webp" alt="Notorious Barbershop" class="vc-logo" />
-              <span class="vc-label">Dárkový poukaz</span>
-            </div>
-            <div class="vc-divider"></div>
-            <div class="vc-bottom">
-              <p class="vc-tagline">Darujte styl &amp; zážitek</p>
-              <p class="vc-sub">Notorious Barbershop · Kyjov</p>
-            </div>
+
+        <!-- Perforated divider -->
+        <div class="vc-perf" aria-hidden="true"></div>
+
+        <!-- Stub -->
+        <div class="vc-stub">
+          <img src="images/notorious-barber-shop-logo.webp" alt="" class="vc-stub-logo" aria-hidden="true" />
+          <div class="vc-stub-divider"></div>
+          <div>
+            <p class="vc-stub-label">Platnost</p>
+            <p class="vc-stub-value">6 měsíců</p>
+            <p class="vc-stub-label" style="margin-top:4px;">od data vystavení</p>
           </div>
+          <div class="vc-stub-divider"></div>
+          <div>
+            <p class="vc-stub-label">Místo uplatnění</p>
+            <p class="vc-stub-validity">Masarykovo nám. 17/6<br />Kyjov</p>
+          </div>
+          <div class="vc-stub-divider"></div>
+          <a href="tel:+420771153666" class="vc-stub-btn">Informace</a>
         </div>
+
       </div>
+      <p class="vc-scissors" aria-hidden="true">
+        ✂ &nbsp;Poukaz obdržíte osobně v provozovně
+      </p>
     </div>
   </section>
 
@@ -1521,17 +1784,17 @@
         <h2 class="gallery-title">Výsledky hovoří<br /><em style="font-family:var(--font-display);font-style:italic;color:var(--color-gold);">za vše</em></h2>
       </div>
       <div class="gallery-grid" id="gallery-grid">
-        <div class="gallery-item reveal" data-lb-src="../barber/images/work-3.jpg" data-lb-alt="Výsledek střihu" tabindex="0" role="button" aria-label="Zobrazit: Výsledek střihu">
-          <img src="../barber/images/work-3.jpg" alt="Výsledek střihu" loading="lazy" />
+        <div class="gallery-item reveal" data-lb-src="images/work-3.jpg" data-lb-alt="Výsledek střihu" tabindex="0" role="button" aria-label="Zobrazit: Výsledek střihu">
+          <img src="images/work-3.jpg" alt="Výsledek střihu" loading="lazy" />
         </div>
-        <div class="gallery-item reveal reveal-delay-1" data-lb-src="../barber/images/gallery.jpg" data-lb-alt="Práce v salonu" tabindex="0" role="button" aria-label="Zobrazit: Práce v salonu">
-          <img src="../barber/images/gallery.jpg" alt="Práce v salonu" loading="lazy" />
+        <div class="gallery-item reveal reveal-delay-1" data-lb-src="images/gallery.jpg" data-lb-alt="Práce v salonu" tabindex="0" role="button" aria-label="Zobrazit: Práce v salonu">
+          <img src="images/gallery.jpg" alt="Práce v salonu" loading="lazy" />
         </div>
-        <div class="gallery-item reveal reveal-delay-2" data-lb-src="../barber/images/work.jpg" data-lb-alt="Střih a styling" tabindex="0" role="button" aria-label="Zobrazit: Střih a styling">
-          <img src="../barber/images/work.jpg" alt="Střih a styling" loading="lazy" />
+        <div class="gallery-item reveal reveal-delay-2" data-lb-src="images/work.jpg" data-lb-alt="Střih a styling" tabindex="0" role="button" aria-label="Zobrazit: Střih a styling">
+          <img src="images/work.jpg" alt="Střih a styling" loading="lazy" />
         </div>
-        <div class="gallery-item reveal reveal-delay-3" data-lb-src="../barber/images/work-2.jpg" data-lb-alt="Detail střihu" tabindex="0" role="button" aria-label="Zobrazit: Detail střihu">
-          <img src="../barber/images/work-2.jpg" alt="Detail střihu" loading="lazy" />
+        <div class="gallery-item reveal reveal-delay-3" data-lb-src="images/work-2.jpg" data-lb-alt="Detail střihu" tabindex="0" role="button" aria-label="Zobrazit: Detail střihu">
+          <img src="images/work-2.jpg" alt="Detail střihu" loading="lazy" />
         </div>
       </div>
     </div>
@@ -1541,6 +1804,7 @@
   <section id="contact" aria-label="Kontakt a otevírací doba">
     <div class="container">
       <div class="contact-grid">
+        <!-- Levý sloupec: kontaktní info + social -->
         <div>
           <span class="section-label reveal">Kontakt</span>
           <h2 class="contact-title reveal">Navštivte nás</h2>
@@ -1576,19 +1840,6 @@
             </div>
           </div>
 
-          <span class="section-label reveal" style="margin-bottom:12px;">Otevírací doba</span>
-          <table class="hours-table reveal" aria-label="Otevírací doba">
-            <tbody>
-              <tr data-day="1"><td>Pondělí</td><td>09:00 – 17:00</td></tr>
-              <tr data-day="2"><td>Úterý</td><td>08:00 – 18:00</td></tr>
-              <tr data-day="3"><td>Středa</td><td>08:00 – 18:00</td></tr>
-              <tr data-day="4"><td>Čtvrtek</td><td>08:00 – 18:00</td></tr>
-              <tr data-day="5"><td>Pátek</td><td>08:00 – 18:00</td></tr>
-              <tr data-day="6"><td>Sobota</td><td>Dle objednávek</td></tr>
-              <tr data-day="0"><td>Neděle</td><td>Dle objednávek</td></tr>
-            </tbody>
-          </table>
-
           <div class="contact-social reveal">
             <a href="https://www.facebook.com/p/Notorious-Barbershop-100087989190905/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -1601,15 +1852,32 @@
           </div>
         </div>
 
-        <div class="contact-map reveal reveal-delay-2">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.987!2d17.1241!3d49.0113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47136a7f5c9e8b3f%3A0x5a3a8d9f0e2b1c4d!2sMasarykovo+n%C3%A1m%C4%9Bst%C3%AD+17%2F6%2C+697+01+Kyjov!5e0!3m2!1scs!2scz!4v1609459200000"
-            title="Mapa – Notorious Barbershop, Kyjov"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+        <!-- Pravý sloupec: otevírací doba -->
+        <div class="contact-hours reveal reveal-delay-2">
+          <span class="section-label" style="margin-bottom:16px;">Otevírací doba</span>
+          <table class="hours-table" aria-label="Otevírací doba">
+            <tbody>
+              <tr data-day="1"><td>Pondělí</td><td>09:00 – 17:00</td></tr>
+              <tr data-day="2"><td>Úterý</td><td>08:00 – 18:00</td></tr>
+              <tr data-day="3"><td>Středa</td><td>08:00 – 18:00</td></tr>
+              <tr data-day="4"><td>Čtvrtek</td><td>08:00 – 18:00</td></tr>
+              <tr data-day="5"><td>Pátek</td><td>08:00 – 18:00</td></tr>
+              <tr data-day="6"><td>Sobota</td><td>Dle objednávek</td></tr>
+              <tr data-day="0"><td>Neděle</td><td>Dle objednávek</td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+
+      <!-- Mapa na celou šířku -->
+      <div class="contact-map-full reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.987!2d17.1241!3d49.0113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47136a7f5c9e8b3f%3A0x5a3a8d9f0e2b1c4d!2sMasarykovo+n%C3%A1m%C4%9Bst%C3%AD+17%2F6%2C+697+01+Kyjov!5e0!3m2!1scs!2scz!4v1609459200000"
+          title="Mapa – Notorious Barbershop, Kyjov"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </div>
   </section>
@@ -1618,12 +1886,7 @@
   <footer id="footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-logo">
-          <a href="#hero" aria-label="Notorious Barbershop — nahoru">
-            <img src="images/notorious-barber-shop-logo.webp" alt="Notorious Barbershop" />
-          </a>
-        </div>
-        <nav class="footer-nav-links" aria-label="Patičková navigace">
+<nav class="footer-nav-links" aria-label="Patičková navigace">
           <a href="#services">Ceník</a>
           <a href="#team">Tým</a>
           <a href="#gallery">Galerie</a>
@@ -1663,23 +1926,34 @@
     // ── Hamburger menu ──
     const hamburger = document.getElementById('hamburger');
     const navMobile = document.getElementById('nav-mobile');
+    const navBackdrop = document.getElementById('nav-backdrop');
+
+    function openMenu() {
+      hamburger.classList.add('open');
+      navMobile.classList.add('open');
+      navBackdrop.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      hamburger.classList.remove('open');
+      navMobile.classList.remove('open');
+      navBackdrop.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
 
     hamburger.addEventListener('click', () => {
-      const isOpen = hamburger.classList.toggle('open');
-      navMobile.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      navMobile.classList.contains('open') ? closeMenu() : openMenu();
     });
 
-    // Close mobile nav on link click
+    // Close on link click
     navMobile.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        navMobile.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMenu);
     });
+
+    // Close on backdrop click
+    navBackdrop.addEventListener('click', closeMenu);
 
     // ── Scroll reveal (IntersectionObserver) ──
     const revealEls = document.querySelectorAll('.reveal');
