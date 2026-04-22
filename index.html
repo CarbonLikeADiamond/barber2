@@ -72,72 +72,95 @@
     .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* ══════════════════════════════════════════
-       NAVIGATION
+       HEADER
     ══════════════════════════════════════════ */
-    #site-nav {
-      position: sticky;
-      top: 0;
+    #site-header {
+      position: relative;
       z-index: 100;
-      height: var(--nav-h);
-      background: #ffffff;
-      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 32px;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+    .header-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/bg-street.jpg') center center / cover no-repeat;
+      z-index: 0;
+    }
+    .header-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 16, 14, 0.82);
+    }
+    .header-logo {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
+      justify-content: center;
+      padding-bottom: 24px;
     }
-    #site-nav .container {
+    .logo-link { display: block; line-height: 0; }
+    .logo-img {
+      height: clamp(80px, 10vw, 120px);
+      width: auto;
+      display: block;
+    }
+    .header-nav {
+      position: relative;
+      z-index: 1;
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      border-top: 1px solid rgba(201, 169, 102, 0.2);
+      padding: 14px clamp(20px, 5vw, 60px);
     }
-    .nav-logo img {
-      height: 120px;
-      width: auto;
-    }
-    .nav-links {
+    .header-nav-links {
       display: flex;
       align-items: center;
-      gap: 36px;
+      gap: 0;
+      list-style: none;
     }
-    .nav-links a {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--color-muted);
-      transition: color 0.25s, letter-spacing 0.25s;
-      position: relative;
-      padding-bottom: 4px;
+    .header-nav-links li a {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: #d4cbbf;
+      padding: 4px 20px;
+      transition: color 0.25s;
     }
-    /* Razor-slash underline: zlatá linka se šikmým skluzem zleva */
-    .nav-links a:not(.nav-cta)::after {
-      content: '';
+    .header-nav-links li a:hover { color: var(--color-gold); }
+    .header-nav-links .nav-sep {
+      color: rgba(201, 169, 102, 0.35);
+      font-size: 14px;
+      user-select: none;
+    }
+    .nav-social {
       position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 1.5px;
-      background: var(--color-gold);
-      transform: scaleX(0) skewX(-20deg);
-      transform-origin: left center;
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      right: clamp(20px, 5vw, 60px);
+      display: flex;
+      gap: 8px;
     }
-    .nav-links a:not(.nav-cta):hover {
-      color: var(--color-text);
-      letter-spacing: 0.13em;
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(201, 169, 102, 0.15);
+      border: 1px solid rgba(201, 169, 102, 0.4);
+      color: var(--color-gold);
+      transition: background 0.25s, border-color 0.25s;
     }
-    .nav-links a:not(.nav-cta):hover::after {
-      transform: scaleX(1) skewX(-20deg);
-    }
-    .nav-cta {
-      background: var(--color-gold) !important;
-      color: #fff !important;
-      padding: 10px 22px !important;
-      border-radius: 2px;
-      font-weight: 600 !important;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: #9a7820 !important; }
-
-    /* Hamburger */
+    .social-btn svg { width: 14px; height: 14px; }
+    .social-btn:hover { background: var(--color-gold); color: var(--bg-dark); }
     .nav-hamburger {
       display: none;
       flex-direction: column;
@@ -146,73 +169,19 @@
       border: none;
       cursor: pointer;
       padding: 4px;
+      position: absolute;
+      left: clamp(20px, 5vw, 60px);
     }
     .nav-hamburger span {
       display: block;
       width: 24px;
-      height: 2px;
-      background: var(--color-text);
+      height: 1.5px;
+      background: #d4cbbf;
       transition: transform 0.3s, opacity 0.3s;
     }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Mobile nav */
-    /* Backdrop */
-    .nav-mobile-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(28,25,23,0.45);
-      z-index: 98;
-      opacity: 0;
-      transition: opacity 0.35s ease;
-    }
-    .nav-mobile-backdrop.open {
-      display: block;
-      opacity: 1;
-    }
-    /* Drawer */
-    .nav-mobile {
-      display: flex;
-      position: fixed;
-      top: 0; bottom: 0; right: 0;
-      width: 75vw;
-      max-width: 320px;
-      background: var(--bg-primary);
-      z-index: 99;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 8px;
-      padding: 48px 40px;
-      box-shadow: -8px 0 40px rgba(28,25,23,0.15);
-      transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      border-left: 1px solid var(--border);
-    }
-    .nav-mobile.open { transform: translateX(0); }
-    .nav-mobile a {
-      font-family: var(--font-display);
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--color-text);
-      padding: 8px 0;
-    }
-    .nav-mobile a:hover { color: var(--color-gold); }
-    .nav-mobile .nav-cta {
-      background: var(--color-gold);
-      color: #fff;
-      padding: 14px 28px;
-      font-family: var(--font-body);
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      margin-top: 16px;
-      font-weight: 600;
-    }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     /* ══════════════════════════════════════════
        HERO — SPLIT SCREEN
@@ -1425,9 +1394,28 @@
 
     @media (max-width: 900px) {
       .container { padding: 0 24px; }
-      /* Nav */
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
+      /* Header nav */
+      .nav-hamburger { display: flex; position: static; }
+      .nav-social { position: static; }
+      .header-nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 12px clamp(20px, 5vw, 40px);
+      }
+      .nav-social { order: 1; }
+      .nav-hamburger { order: 2; }
+      .header-nav-links {
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .header-nav-links.open { max-height: 300px; }
+      .header-nav-links .nav-sep { display: none; }
+      .header-nav-links li a { display: block; padding: 12px 20px; font-size: 12px; }
       /* Hero */
       #hero {
         grid-template-columns: 1fr;
@@ -1478,38 +1466,45 @@
 <body>
 
   <!-- ══ NAVIGATION ══ -->
-  <nav id="site-nav" role="navigation" aria-label="Hlavní navigace">
-    <div class="container">
-      <a href="#hero" class="nav-logo" aria-label="Notorious Barbershop — domů">
-        <img src="images/notorious-barber-shop-logo.webp" alt="Notorious Barbershop logo" />
+  <header id="site-header">
+    <div class="header-bg"></div>
+
+    <div class="header-logo">
+      <a href="#hero" class="logo-link" aria-label="Notorious Barbershop — domů">
+        <img src="images/logo-notorious.svg" alt="Notorious Barbershop logo" class="logo-img" />
       </a>
-      <ul class="nav-links" role="list">
-        <li><a href="#services">Ceník</a></li>
-        <li><a href="#team">Tým</a></li>
-        <li><a href="#gallery">Galerie</a></li>
-        <li><a href="#contact">Kontakt</a></li>
-        <li><a href="https://notorious-barbershop-kyjov.reservio.com/" target="_blank" rel="noopener" class="nav-cta">Rezervovat</a></li>
-      </ul>
+    </div>
+
+    <nav class="header-nav" id="headerNav" aria-label="Hlavní navigace">
       <button class="nav-hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-    </div>
-  </nav>
 
-  <!-- Mobile nav overlay -->
-  <div class="nav-mobile-backdrop" id="nav-backdrop"></div>
-  <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobilní menu">
-    <a href="#services" class="nav-mobile-link">Ceník</a>
-    <a href="#team" class="nav-mobile-link">Tým</a>
-    <a href="#gallery" class="nav-mobile-link">Galerie</a>
-    <a href="#contact" class="nav-mobile-link">Kontakt</a>
-    <a href="https://notorious-barbershop-kyjov.reservio.com/" target="_blank" rel="noopener" class="nav-cta">Rezervovat online</a>
-  </div>
+      <ul class="header-nav-links" id="navLinks" role="list">
+        <li><a href="#services">CENÍK</a></li>
+        <li class="nav-sep" aria-hidden="true">|</li>
+        <li><a href="#team">TÝM</a></li>
+        <li class="nav-sep" aria-hidden="true">|</li>
+        <li><a href="#gallery">GALERIE</a></li>
+        <li class="nav-sep" aria-hidden="true">|</li>
+        <li><a href="#contact">KONTAKT</a></li>
+      </ul>
+
+      <div class="nav-social">
+        <a href="https://www.facebook.com/p/Notorious-Barbershop-100087989190905/" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/notorious_barbershop_/" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
 
   <!-- ══ HERO — SPLIT SCREEN ══ -->
   <section id="hero" aria-label="Úvodní sekce">
     <div class="hero-content">
-      <div class="hero-eyebrow">Kyjov · Est. 2019</div>
+      <div class="hero-eyebrow">Kyjov · Est. 2020</div>
       <h1 class="hero-heading">
         Notorious<br />
         <em>Barber</em><br />
@@ -1541,7 +1536,7 @@
       <span>Notorious Barbershop</span><span class="dot">·</span>
       <span>Kyjov</span><span class="dot">·</span>
       <span>Pánský Barber</span><span class="dot">·</span>
-      <span>Since 2019</span><span class="dot">·</span>
+      <span>Since 2020</span><span class="dot">·</span>
       <span>Hot Towel Holení</span><span class="dot">·</span>
       <span>Classic Střihy</span><span class="dot">·</span>
       <span>Úprava Vousů</span><span class="dot">·</span>
@@ -1549,7 +1544,7 @@
       <span>Notorious Barbershop</span><span class="dot">·</span>
       <span>Kyjov</span><span class="dot">·</span>
       <span>Pánský Barber</span><span class="dot">·</span>
-      <span>Since 2019</span><span class="dot">·</span>
+      <span>Since 2020</span><span class="dot">·</span>
       <span>Hot Towel Holení</span><span class="dot">·</span>
       <span>Classic Střihy</span><span class="dot">·</span>
       <span>Úprava Vousů</span><span class="dot">·</span>
@@ -1700,7 +1695,7 @@
           </div>
           <div class="vc-rule"></div>
           <h2 class="vc-heading">Darujte <em>styl</em><br />&amp; zážitek</h2>
-          <p class="vc-tagline">Notorious Barbershop · Kyjov · Est. 2019</p>
+          <p class="vc-tagline">Notorious Barbershop · Kyjov · Est. 2020</p>
           <p class="vc-text">
             Hledáte originální dárek pro muže, přítele, kamaráda?<br />
             Darujte mu <strong>STYL</strong> i <strong>ZÁŽITEK</strong>.
@@ -1925,35 +1920,21 @@
   <script>
     // ── Hamburger menu ──
     const hamburger = document.getElementById('hamburger');
-    const navMobile = document.getElementById('nav-mobile');
-    const navBackdrop = document.getElementById('nav-backdrop');
-
-    function openMenu() {
-      hamburger.classList.add('open');
-      navMobile.classList.add('open');
-      navBackdrop.classList.add('open');
-      hamburger.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu() {
-      hamburger.classList.remove('open');
-      navMobile.classList.remove('open');
-      navBackdrop.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
+    const navLinks  = document.getElementById('navLinks');
 
     hamburger.addEventListener('click', () => {
-      navMobile.classList.contains('open') ? closeMenu() : openMenu();
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // Close on link click
-    navMobile.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
     });
-
-    // Close on backdrop click
-    navBackdrop.addEventListener('click', closeMenu);
 
     // ── Scroll reveal (IntersectionObserver) ──
     const revealEls = document.querySelectorAll('.reveal');
