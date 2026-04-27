@@ -654,267 +654,112 @@
     /* ══════════════════════════════════════════
        GIFT VOUCHER
     ══════════════════════════════════════════ */
-    /* ── VOUCHER SECTION ── */
     #voucher {
       background: var(--bg-dark);
-      padding: 100px 0 110px;
-      position: relative;
-    }
-    .voucher-section-label {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    /* The physical voucher card */
-    .voucher-card {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .vc-paper {
-      background: linear-gradient(160deg, #fdfaf3 0%, #f5edd8 50%, #fdfaf3 100%);
-      border-radius: 6px;
-      box-shadow:
-        0 0 0 1px rgba(184,146,42,0.5),
-        0 0 0 5px rgba(184,146,42,0.08),
-        0 0 0 6px rgba(184,146,42,0.3),
-        0 32px 80px rgba(0,0,0,0.55);
-      display: grid;
-      grid-template-columns: 1fr 1px 220px;
+      padding: 100px 0 120px;
       position: relative;
       overflow: hidden;
     }
-    /* Watermark diagonal text */
-    .vc-paper::before {
-      content: 'GIFT VOUCHER';
+    /* Atmospheric gold ambient light in background */
+    #voucher::before {
+      content: '';
       position: absolute;
       top: 50%; left: 50%;
-      transform: translate(-50%, -50%) rotate(-20deg);
-      font-family: var(--font-display);
-      font-size: 72px;
-      font-weight: 900;
-      color: rgba(184,146,42,0.05);
-      white-space: nowrap;
+      transform: translate(-50%, -50%);
+      width: 110%; height: 100%;
+      background: radial-gradient(ellipse at 50% 60%, rgba(184,146,42,0.10) 0%, transparent 65%);
       pointer-events: none;
-      user-select: none;
-      letter-spacing: 0.1em;
+    }
+    .voucher-section-label {
+      text-align: center;
+      margin-bottom: 56px;
+      position: relative;
+      z-index: 1;
+    }
+    /* Decorative ornament below label */
+    .voucher-section-label::after {
+      content: '';
+      display: block;
+      margin: 18px auto 0;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
     }
 
-    /* ── Main body ── */
-    .vc-body {
-      padding: 52px 52px 48px;
+    /* Gold-framed card wrapper */
+    .voucher-card {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 32px;
       position: relative;
+      z-index: 1;
     }
-    /* Corner ornaments on main body */
-    .vc-body::before,
-    .vc-body::after {
+    /* Radial gold halo directly behind image */
+    .voucher-card::before {
       content: '';
       position: absolute;
-      width: 32px; height: 32px;
-      border-color: rgba(184,146,42,0.5);
+      inset: -60px -40px;
+      background: radial-gradient(ellipse at 50% 50%, rgba(184,146,42,0.20) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    /* Decorative corner ornaments */
+    .voucher-frame {
+      position: relative;
+      padding: 14px;
+    }
+    .voucher-frame::before,
+    .voucher-frame::after {
+      content: '';
+      position: absolute;
+      width: 36px; height: 36px;
+      border-color: rgba(184,146,42,0.55);
       border-style: solid;
     }
-    .vc-body::before { top: 18px; left: 18px; border-width: 1.5px 0 0 1.5px; }
-    .vc-body::after  { bottom: 18px; left: 18px; border-width: 0 0 1.5px 1.5px; }
-
-    .vc-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 28px;
+    .voucher-frame::before { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; }
+    .voucher-frame::after  { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; }
+    /* Second pair of corners via inner pseudo via wrapper span trick — use data attrs on img wrapper */
+    .voucher-frame-inner {
+      position: relative;
     }
-    .vc-logo { height: 72px; width: auto; }
-    .vc-badge {
+    .voucher-frame-inner::before,
+    .voucher-frame-inner::after {
+      content: '';
+      position: absolute;
+      width: 36px; height: 36px;
+      border-color: rgba(184,146,42,0.55);
+      border-style: solid;
+      z-index: 2;
+    }
+    .voucher-frame-inner::before { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; }
+    .voucher-frame-inner::after  { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; }
+    .voucher-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 3px;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(184,146,42,0.65),
+        0 0 0 4px rgba(28,25,23,0.95),
+        0 0 0 5px rgba(184,146,42,0.30),
+        0 0 50px rgba(184,146,42,0.22),
+        0 24px 70px rgba(0,0,0,0.75),
+        0 48px 120px rgba(0,0,0,0.45);
+    }
+    .voucher-cta {
+      text-align: center;
+      margin-top: 52px;
+      position: relative;
+      z-index: 1;
+    }
+    .voucher-cta-text {
       font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--color-gold);
-      border: 1px solid rgba(184,146,42,0.4);
-      padding: 7px 16px;
-      border-radius: 2px;
-    }
-    .vc-rule {
-      height: 1px;
-      background: linear-gradient(90deg, var(--color-gold), rgba(184,146,42,0.15));
-      margin-bottom: 28px;
-    }
-    .vc-heading {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 3.5vw, 42px);
-      font-weight: 700;
-      color: #1c1710;
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-    .vc-heading em {
-      font-style: italic;
-      color: var(--color-gold);
-    }
-    .vc-tagline {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(28,23,16,0.4);
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.05em;
       margin-bottom: 24px;
     }
-    .vc-text {
-      font-size: 15px;
-      line-height: 1.75;
-      color: rgba(28,23,16,0.65);
-      max-width: 420px;
-      margin-bottom: 8px;
-    }
-    .vc-text strong { color: #1c1710; font-weight: 700; }
-    .vc-text-sm {
-      font-size: 14px;
-      line-height: 1.7;
-      color: rgba(28,23,16,0.55);
-      max-width: 420px;
-    }
-
-    /* ── Perforated divider ── */
-    .vc-perf {
-      width: 1px;
-      background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(184,146,42,0.5) 0px,
-        rgba(184,146,42,0.5) 8px,
-        transparent 8px,
-        transparent 16px
-      );
-      position: relative;
-      flex-shrink: 0;
-    }
-    /* Semicircle notches */
-    .vc-perf::before,
-    .vc-perf::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px; height: 10px;
-      background: var(--bg-dark);
-      border-radius: 0 0 10px 10px;
-    }
-    .vc-perf::before { top: -1px; border-radius: 0 0 10px 10px; }
-    .vc-perf::after  { bottom: -1px; border-radius: 10px 10px 0 0; }
-
-    /* ── Stub ── */
-    .vc-stub {
-      padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      text-align: center;
-      position: relative;
-      background: linear-gradient(160deg, rgba(184,146,42,0.06) 0%, rgba(184,146,42,0.02) 100%);
-    }
-    .vc-stub::before,
-    .vc-stub::after {
-      content: '';
-      position: absolute;
-      width: 28px; height: 28px;
-      border-color: rgba(184,146,42,0.5);
-      border-style: solid;
-    }
-    .vc-stub::before { top: 18px; right: 18px; border-width: 1.5px 1.5px 0 0; }
-    .vc-stub::after  { bottom: 18px; right: 18px; border-width: 0 1.5px 1.5px 0; }
-
-    .vc-stub-logo { height: 56px; width: auto; margin-bottom: 16px; }
-    .vc-stub-divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(184,146,42,0.25);
-      margin: 12px 0;
-    }
-    .vc-stub-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(28,23,16,0.4);
-      margin-bottom: 4px;
-    }
-    .vc-stub-value {
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 700;
-      color: #1c1710;
-    }
-    .vc-stub-validity {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--color-gold);
-      letter-spacing: 0.05em;
-    }
-    .vc-stub-btn {
-      display: block;
-      width: 100%;
-      background: linear-gradient(135deg, var(--color-gold-lt), var(--color-gold));
-      color: #1c1710;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 12px 8px;
-      border-radius: 2px;
-      margin-top: 4px;
-      text-align: center;
-      transition: opacity 0.2s;
-      box-shadow: 0 4px 16px rgba(184,146,42,0.3);
-    }
-    .vc-stub-btn:hover { opacity: 0.85; }
-
-    /* scissors hint at bottom */
-    .vc-scissors {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 11px;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.15em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .vc-scissors::before,
-    .vc-scissors::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: repeating-linear-gradient(
-        to right,
-        rgba(255,255,255,0.15) 0px,
-        rgba(255,255,255,0.15) 6px,
-        transparent 6px,
-        transparent 12px
-      );
-    }
-
-    @media (max-width: 900px) {
-      .vc-paper { grid-template-columns: 1fr; grid-template-rows: auto 1px auto; }
-      .vc-perf {
-        width: 100%; height: 1px;
-        background-image: repeating-linear-gradient(
-          to right,
-          rgba(184,146,42,0.5) 0px,
-          rgba(184,146,42,0.5) 8px,
-          transparent 8px,
-          transparent 16px
-        );
-      }
-      .vc-perf::before { top: 50%; left: -1px; transform: translateY(-50%); width: 10px; height: 20px; border-radius: 0 10px 10px 0; }
-      .vc-perf::after  { top: 50%; right: -1px; left: auto; transform: translateY(-50%); width: 10px; height: 20px; border-radius: 10px 0 0 10px; }
-      .vc-stub { flex-direction: row; flex-wrap: wrap; gap: 16px; padding: 32px; text-align: left; }
-      .vc-stub-logo { margin-bottom: 0; }
-      .vc-body { padding: 40px 32px; }
-    }
-    @media (max-width: 600px) {
-      .vc-body { padding: 32px 24px; }
-      .vc-stub { padding: 24px; flex-direction: column; text-align: center; }
+    .voucher-cta-btn {
+      box-shadow: 0 8px 32px rgba(184,146,42,0.35);
     }
 
     /* ══════════════════════════════════════════
@@ -938,68 +783,65 @@
     .team-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 48px 64px;
+      max-width: 720px;
+      margin: 0 auto;
     }
     .team-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 4px;
-      aspect-ratio: 4/3;
-      cursor: pointer;
-    }
-    .team-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      transition: transform 0.7s ease;
-      filter: grayscale(20%);
-    }
-    .team-card:hover img {
-      transform: scale(1.06);
-      filter: grayscale(0%);
-    }
-    .team-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(28,25,23,0.9) 0%, rgba(28,25,23,0.2) 50%, transparent 100%);
+      text-align: center;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 40px 36px;
-      transition: background 0.4s;
+      align-items: center;
     }
-    .team-card:hover .team-card-overlay {
-      background: linear-gradient(to top, rgba(28,25,23,0.95) 0%, rgba(28,25,23,0.4) 60%, transparent 100%);
+    .team-photo-wrap {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      margin: 0 auto 32px;
+      padding: 5px;
+      background: var(--bg-dark);
+      position: relative;
+      flex-shrink: 0;
+      box-shadow:
+        0 0 0 1.5px rgba(184,146,42,0.65),
+        0 0 0 6px rgba(184,146,42,0.07),
+        0 0 0 7.5px rgba(184,146,42,0.35),
+        0 0 40px rgba(184,146,42,0.15),
+        0 16px 48px rgba(0,0,0,0.55);
     }
+    .team-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.4s;
+    }
+    .team-card:hover .team-photo { filter: grayscale(0%); }
     .team-name {
       font-family: var(--font-display);
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
+      font-style: italic;
+      color: var(--color-gold-lt);
+      margin-bottom: 6px;
     }
     .team-role {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-gold-lt);
-      margin-bottom: 16px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
     }
     .team-bio {
       font-size: 14px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.55);
       margin-bottom: 28px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.4s;
-      opacity: 0;
-    }
-    .team-card:hover .team-bio {
-      max-height: 120px;
-      opacity: 1;
+      max-width: 300px;
     }
     .team-card-btn {
       display: inline-block;
@@ -1009,37 +851,18 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      padding: 10px 20px;
+      padding: 11px 24px;
       border-radius: 2px;
-      transition: background 0.2s, color 0.2s;
-      align-self: flex-start;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
     .team-card-btn:hover {
       background: var(--color-gold);
       border-color: var(--color-gold);
       color: #fff;
     }
-    /* Team placeholder */
-    .team-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #2a2420 0%, #3d3530 50%, #252220 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      inset: 0;
-    }
-    .team-placeholder--2 {
-      background: linear-gradient(135deg, #1e2228 0%, #2d3540 50%, #1a1f28 100%);
-    }
-    .team-placeholder-initial {
-      font-family: var(--font-display);
-      font-size: 120px;
-      font-weight: 900;
-      color: rgba(184,146,42,0.18);
-      line-height: 1;
-      user-select: none;
+    @media (max-width: 640px) {
+      .team-grid { grid-template-columns: 1fr; gap: 56px; }
+      .team-photo-wrap { width: 180px; height: 180px; }
     }
 
     /* ══════════════════════════════════════════
@@ -1598,49 +1421,49 @@
         <div class="price-item reveal" role="listitem">
           <span class="price-name">Classic střih</span>
           <span class="price-amount">470 Kč</span>
-          <p class="price-desc">Mytí hlavy, střih, úprava obočí, depilace nosu a uší, styling a kolínská. Součástí je espresso nebo jiný nápoj.</p>
+          <p class="price-desc">Classic střih = udržovací, každý detail pod kontrolou. Nadčasový střih s důrazem na preciznost a čisté linie. Mytí hlavy, střih, úprava obočí, depilace nosu a uší, styling a kolínská. Ideální pro udržení upraveného a profesionálního vzhledu. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-1" role="listitem">
           <span class="price-name">Creative střih</span>
           <span class="price-amount">670 Kč</span>
-          <p class="price-desc">Moderní střih pro proměny a výrazný styl. Mytí hlavy, kreativní techniky, úprava obočí, styling a kolínská.</p>
+          <p class="price-desc">Creative = Pro náročnější, kreativní proměny nebo delší/komplikované vlasy. Moderní střih pro proměny a výrazný styl. Mytí hlavy, střih, kreativní techniky, úprava obočí, styling a kolínská. Vhodné pro muže, kteří chtějí originální a osobitý vzhled. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-2" role="listitem">
           <span class="price-name">Střih dlouhých vlasů</span>
           <span class="price-amount">670 Kč</span>
-          <p class="price-desc">Mytí hlavy, tvarování délky, ošetření konečků, úprava obočí, depilace nosu a uší, styling a kolínská.</p>
+          <p class="price-desc">Profesionální úprava delších vlasů pro zdravý a stylový vzhled. Mytí hlavy, tvarování délky, ošetření konečků, úprava obočí, depilace nosu a uší, styling a kolínská. Ideální volba pro muže, kteří chtějí udržet své dlouhé vlasy v perfektní kondici. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-3" role="listitem">
           <span class="price-name">Střih dlouhých vlasů &amp; Úprava vousů</span>
           <span class="price-amount">970 Kč</span>
-          <p class="price-desc">Kompletní péče o dlouhé vlasy i vousy — tvarování délky, ošetření konečků, precizní tvarování vousů, horký ručník, kontury, olej a balzám.</p>
+          <p class="price-desc">Kompletní péče o dlouhé vlasy i vousy. Mytí hlavy, tvarování délky, ošetření konečků, úprava obočí a depilace nosu a uší, styling a kolínská. Úprava vousů – precizní tvarování, zarovnání, horký ručník, kontury, olej, balzám a kolínská. Pro muže, kteří chtějí působit upraveně a zároveň přirozeně. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal" role="listitem">
           <span class="price-name">Úprava vousů</span>
           <span class="price-amount">370 Kč</span>
-          <p class="price-desc">Horký ručník, kontury, úprava obočí, depilace nosu a uší, oleje, balzám a kolínská. Součástí je espresso nebo jiný nápoj.</p>
+          <p class="price-desc">Precizní tvarování, zarovnání a kompletní ošetření vousů. Horký ručník, kontury, úprava obočí, depilace nosu a uší, oleje, balzám a kolínská. Pro dokonale upravený vzhled a zdravé vousy. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-1" role="listitem">
           <span class="price-name">Classic střih &amp; Úprava vousů</span>
           <span class="price-amount">770 Kč</span>
-          <p class="price-desc">Kompletní péče v tradičním stylu. Mytí hlavy, střih, precizní tvarování vousů, horký ručník, kontury, olej a balzám.</p>
+          <p class="price-desc">Kompletní péče o vlasy i vousy v tradičním stylu. Mytí hlavy, střih, úprava obočí, depilace nosu a uší, styling a kolínská. Úprava vousů – precizní tvarování, zarovnání, horký ručník, kontury, olej, balzám a kolínská. Pro upravený a vyvážený vzhled. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-2" role="listitem">
           <span class="price-name">Holení hlavy břitvou &amp; Úprava vousů</span>
           <span class="price-amount">670 Kč</span>
-          <p class="price-desc">Tradiční holení břitvou, horký ručník, úprava obočí, depilace nosu a uší, kontury, oleje, balzám a kolínská.</p>
+          <p class="price-desc">Luxusní procedura pro hladkou pokožku a dokonale upravené vousy. Tradiční holení břitvou, horký ručník, úprava obočí, depilace nosu a uší, kontury, oleje, balzám a kolínská. Pro muže, kteří chtějí precizní vzhled a maximální komfort. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-3" role="listitem">
           <span class="price-name">Střih mladého Gentlemana</span>
           <span class="price-amount">400 Kč</span>
-          <p class="price-desc">Stylový střih přizpůsobený věku, typu vlasů a pohodlí dítěte. Čisté linie, jemné přechody a snadná údržba. Součástí je nealkoholický nápoj.</p>
+          <p class="price-desc">Stylový střih pro malé gentlemany. Přizpůsobený věku, typu vlasů a pohodlí dítěte. Čisté linie, jemné přechody a snadná údržba a styling. Součástí návštěvy je nealkoholický nápoj.</p>
         </div>
 
       </div>
@@ -1652,15 +1475,8 @@
         <div>
           <span class="exclusive-badge">Prémiový balíček</span>
           <h3 class="exclusive-title">Exclusive Notorious Box</h3>
-          <p class="exclusive-subtitle">The Ultimate Gentleman Experience</p>
-          <ul class="exclusive-features">
-            <li>Mytí hlavy — relaxační péče</li>
-            <li>Střih &amp; úprava vousů</li>
-            <li>Holení břitvou s horkým ručníkem</li>
-            <li>Masáž hlavy a obličeje</li>
-            <li>Slupovací černá maska</li>
-            <li>Prémiový alkohol &amp; doutník</li>
-          </ul>
+          <p class="exclusive-subtitle">Prémiový balíček pro muže, kteří chtějí zažít prvotřídní péči a skutečný relax. Zahrnuje: Mytí hlavy – relaxační péče o vlasy před i po střih. Střih a úprava vousů – precizní linie, zarovnání a styling. Úprava obočí, depilace nosu a opalování uší – dokonalý detail celkového vzhledu.</p>
+          <p class="exclusive-subtitle">Holení břitvou – tradiční technika s horkým ručníkem. Masáž hlavy a obličeje – uvolnění a regenerace. Slupovací černá maska – čistá, svěží a jemná pleť. Luxusní relaxační zážitek doplněný prémiovým alkoholem a doutníkem jako pozornost podniku. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
         <div class="exclusive-cta">
           <span class="exclusive-cta-label">Rezervujte zážitek</span>
@@ -1685,51 +1501,15 @@
       <span class="section-label" style="color:var(--color-gold-lt);">Pro někoho výjimečného</span>
     </div>
     <div class="voucher-card reveal">
-      <div class="vc-paper">
-
-        <!-- Main body -->
-        <div class="vc-body">
-          <div class="vc-header">
-            <img src="images/notorious-barber-shop-logo.webp" alt="Notorious Barbershop" class="vc-logo" />
-            <span class="vc-badge">Dárkový poukaz</span>
-          </div>
-          <div class="vc-rule"></div>
-          <h2 class="vc-heading">Darujte <em>styl</em><br />&amp; zážitek</h2>
-          <p class="vc-tagline">Notorious Barbershop · Kyjov · Est. 2020</p>
-          <p class="vc-text">
-            Hledáte originální dárek pro muže, přítele, kamaráda?<br />
-            Darujte mu <strong>STYL</strong> i <strong>ZÁŽITEK</strong>.
-          </p>
-          <p class="vc-text-sm">
-            Zastavte se u nás v Barbershopu a my vám vybereme ten nejvhodnější.
-          </p>
+      <div class="voucher-frame">
+        <div class="voucher-frame-inner">
+          <img src="images/poukaz.webp" alt="Dárkový poukaz Notorious Barbershop" class="voucher-img" />
         </div>
-
-        <!-- Perforated divider -->
-        <div class="vc-perf" aria-hidden="true"></div>
-
-        <!-- Stub -->
-        <div class="vc-stub">
-          <img src="images/notorious-barber-shop-logo.webp" alt="" class="vc-stub-logo" aria-hidden="true" />
-          <div class="vc-stub-divider"></div>
-          <div>
-            <p class="vc-stub-label">Platnost</p>
-            <p class="vc-stub-value">6 měsíců</p>
-            <p class="vc-stub-label" style="margin-top:4px;">od data vystavení</p>
-          </div>
-          <div class="vc-stub-divider"></div>
-          <div>
-            <p class="vc-stub-label">Místo uplatnění</p>
-            <p class="vc-stub-validity">Masarykovo nám. 17/6<br />Kyjov</p>
-          </div>
-          <div class="vc-stub-divider"></div>
-          <a href="tel:+420771153666" class="vc-stub-btn">Informace</a>
-        </div>
-
       </div>
-      <p class="vc-scissors" aria-hidden="true">
-        ✂ &nbsp;Poukaz obdržíte osobně v provozovně
-      </p>
+    </div>
+    <div class="voucher-cta reveal">
+      <p class="voucher-cta-text">Přijďte osobně nebo nám zavolejte — připravíme poukaz na míru.</p>
+      <a href="tel:+420771153666" class="btn-primary voucher-cta-btn">Objednat poukaz</a>
     </div>
   </section>
 
@@ -1742,30 +1522,22 @@
       </div>
       <div class="team-grid">
         <div class="team-card reveal">
-          <div class="team-placeholder" aria-hidden="true">
-            <span class="team-placeholder-initial">O</span>
+          <div class="team-photo-wrap">
+            <img src="images/ondra.webp" alt="Ondra" class="team-photo" />
           </div>
-          <div class="team-card-overlay">
-            <h3 class="team-name">Ondra</h3>
-            <p class="team-role">Klasické střihy &amp; Tradice</p>
-            <p class="team-bio">Barber s vášní pro poctivé řemeslo a detail. Specializuje se na klasické střihy, úpravy vousů a tradiční techniky, které ctí historii pánského holičství.</p>
-            <a href="https://notorious-barbershop-kyjov.reservio.com/staff/2f925aed-497e-4d85-a44d-9f3809c52002" target="_blank" rel="noopener" class="team-card-btn">
-              Rezervovat u Ondry
-            </a>
-          </div>
+          <h3 class="team-name">Ondra</h3>
+          <p class="team-role">Klasické střihy &amp; Tradice</p>
+          <p class="team-bio">Barber s vášní pro poctivé řemeslo a detail. Specializuje se na klasické střihy, úpravy vousů a tradiční techniky, které ctí historii pánského holičství.</p>
+          <a href="https://notorious-barbershop-kyjov.reservio.com/staff/2f925aed-497e-4d85-a44d-9f3809c52002" target="_blank" rel="noopener" class="team-card-btn">Rezervovat u Ondry</a>
         </div>
         <div class="team-card reveal reveal-delay-2">
-          <div class="team-placeholder team-placeholder--2" aria-hidden="true">
-            <span class="team-placeholder-initial">T</span>
+          <div class="team-photo-wrap">
+            <img src="images/tomas.webp" alt="Tomáš" class="team-photo" />
           </div>
-          <div class="team-card-overlay">
-            <h3 class="team-name">Tomáš</h3>
-            <p class="team-role">Kreativní střihy &amp; Moderní styl</p>
-            <p class="team-bio">Kreativní barber zaměřený na precizní a originální střihy, které podtrhují přirozenost a styl každého zákazníka. Baví ho experimentovat a zkoušet nové techniky.</p>
-            <a href="https://notorious-barbershop-kyjov.reservio.com/staff/b94c1dc8-bc0e-4574-a65a-52d54fccde66" target="_blank" rel="noopener" class="team-card-btn">
-              Rezervovat u Tomáše
-            </a>
-          </div>
+          <h3 class="team-name">Tomáš</h3>
+          <p class="team-role">Kreativní střihy &amp; Moderní styl</p>
+          <p class="team-bio">Kreativní barber zaměřený na precizní a originální střihy, které podtrhují přirozenost a styl každého zákazníka. Baví ho experimentovat a zkoušet nové techniky.</p>
+          <a href="https://notorious-barbershop-kyjov.reservio.com/staff/b94c1dc8-bc0e-4574-a65a-52d54fccde66" target="_blank" rel="noopener" class="team-card-btn">Rezervovat u Tomáše</a>
         </div>
       </div>
     </div>
@@ -1781,12 +1553,6 @@
       <div class="gallery-grid" id="gallery-grid">
         <div class="gallery-item reveal" data-lb-src="images/work-3.jpg" data-lb-alt="Výsledek střihu" tabindex="0" role="button" aria-label="Zobrazit: Výsledek střihu">
           <img src="images/work-3.jpg" alt="Výsledek střihu" loading="lazy" />
-        </div>
-        <div class="gallery-item reveal reveal-delay-1" data-lb-src="images/gallery.jpg" data-lb-alt="Práce v salonu" tabindex="0" role="button" aria-label="Zobrazit: Práce v salonu">
-          <img src="images/gallery.jpg" alt="Práce v salonu" loading="lazy" />
-        </div>
-        <div class="gallery-item reveal reveal-delay-2" data-lb-src="images/work.jpg" data-lb-alt="Střih a styling" tabindex="0" role="button" aria-label="Zobrazit: Střih a styling">
-          <img src="images/work.jpg" alt="Střih a styling" loading="lazy" />
         </div>
         <div class="gallery-item reveal reveal-delay-3" data-lb-src="images/work-2.jpg" data-lb-alt="Detail střihu" tabindex="0" role="button" aria-label="Zobrazit: Detail střihu">
           <img src="images/work-2.jpg" alt="Detail střihu" loading="lazy" />
