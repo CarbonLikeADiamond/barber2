@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Static single-page website for Notorious Barbershop Kyjov. No build step, no framework, no package manager — the entire site is one `index.html` file with all CSS and JS inlined. Deploy target is Netlify (publish dir: `.`).
+Static single-page website for Notorious Barbershop Kyjov. No build step, no framework, no package manager — the entire site is one `index.html` file with all CSS and JS inlined. Deploy target is Vercel (root dir: `.`).
 
 ## Development
 
@@ -44,4 +44,4 @@ The header (`#site-header`) is `position: relative` (not sticky). It has:
 
 ## Deploy
 
-Netlify auto-deploys from `master` branch on GitHub (`CarbonLikeADiamond/barber2`). Cache headers are set in `netlify.toml` — images get 1-year immutable cache, HTML gets no-cache.
+Vercel auto-deploys from `master` branch on GitHub (`CarbonLikeADiamond/barber2`). Cache and security headers are set in `vercel.json` — images get 1-year immutable cache, HTML gets no-cache. Use `vercel` CLI for logs and deploy info.

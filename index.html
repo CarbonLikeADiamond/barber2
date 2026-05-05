@@ -483,12 +483,20 @@
       text-align: right;
       white-space: nowrap;
     }
+    .service-tagline {
+      grid-column: 1;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--color-gold);
+      margin: 2px 0 6px;
+      line-height: 1.4;
+    }
     .price-desc {
       font-size: 14px;
       line-height: 1.6;
       color: var(--color-muted);
       grid-column: 1;
-      grid-row: 2;
+      grid-row: 3;
       margin-top: 8px;
       max-width: 600px;
     }
@@ -496,8 +504,8 @@
     .exclusive-box {
       margin-top: 72px;
       position: relative;
-      background: #0e0c0a;
-      border: 1px solid rgba(184,146,42,0.5);
+      background: linear-gradient(135deg, #F5EDD8 0%, #EDE0C4 100%);
+      border: 1px solid rgba(184,146,42,0.4);
       border-radius: 6px;
       padding: 64px 72px;
       display: grid;
@@ -509,7 +517,7 @@
       transition: box-shadow 0.4s ease;
     }
     .exclusive-box:hover {
-      box-shadow: 0 0 0 1px rgba(184,146,42,0.6), 0 32px 80px rgba(0,0,0,0.5);
+      box-shadow: 0 0 0 1px rgba(184,146,42,0.6), 0 32px 80px rgba(0,0,0,0.12);
     }
     /* Gold corner accents */
     .exclusive-box::before,
@@ -536,7 +544,7 @@
       font-family: var(--font-display);
       font-size: 160px;
       font-weight: 900;
-      color: rgba(184,146,42,0.05);
+      color: rgba(184,146,42,0.13);
       line-height: 1;
       pointer-events: none;
       user-select: none;
@@ -568,7 +576,7 @@
       font-family: var(--font-display);
       font-size: clamp(32px, 3.5vw, 48px);
       font-weight: 700;
-      color: #fff;
+      color: var(--color-text);
       margin-bottom: 10px;
       line-height: 1.1;
       letter-spacing: -0.01em;
@@ -578,7 +586,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-gold-lt);
+      color: var(--color-text);
       margin-bottom: 32px;
       opacity: 0.8;
     }
@@ -589,7 +597,7 @@
     }
     .exclusive-features li {
       font-size: 13.5px;
-      color: rgba(255,255,255,0.7);
+      color: var(--color-text);
       display: flex;
       align-items: baseline;
       gap: 9px;
@@ -610,7 +618,7 @@
       align-items: center;
       gap: 20px;
       text-align: center;
-      border-left: 1px solid rgba(184,146,42,0.2);
+      border-left: 1px solid rgba(184,146,42,0.35);
       padding-left: 48px;
     }
     .exclusive-cta-label {
@@ -618,7 +626,7 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
+      color: var(--color-text);
     }
     .exclusive-cta .btn-vip {
       display: block;
@@ -638,7 +646,7 @@
     .exclusive-cta .btn-vip:hover { opacity: 0.9; transform: translateY(-2px); }
     .exclusive-cta-note {
       font-size: 11px;
-      color: rgba(255,255,255,0.3);
+      color: var(--color-text);
       line-height: 1.5;
     }
     .services-cta-row {
@@ -1421,48 +1429,56 @@
         <div class="price-item reveal" role="listitem">
           <span class="price-name">Classic střih</span>
           <span class="price-amount">470 Kč</span>
+          <p class="service-tagline">Udržovací, každý detail pod kontrolou.</p>
           <p class="price-desc">Classic střih = udržovací, každý detail pod kontrolou. Nadčasový střih s důrazem na preciznost a čisté linie. Mytí hlavy, střih, úprava obočí, depilace nosu a uší, styling a kolínská. Ideální pro udržení upraveného a profesionálního vzhledu. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-1" role="listitem">
           <span class="price-name">Creative střih</span>
           <span class="price-amount">670 Kč</span>
+          <p class="service-tagline">Pro náročnější, kreativní proměny nebo delší/komplikované vlasy.</p>
           <p class="price-desc">Creative = Pro náročnější, kreativní proměny nebo delší/komplikované vlasy. Moderní střih pro proměny a výrazný styl. Mytí hlavy, střih, kreativní techniky, úprava obočí, styling a kolínská. Vhodné pro muže, kteří chtějí originální a osobitý vzhled. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-2" role="listitem">
           <span class="price-name">Střih dlouhých vlasů</span>
           <span class="price-amount">670 Kč</span>
+          <p class="service-tagline">Profesionální úprava delších vlasů pro zdravý a stylový vzhled.</p>
           <p class="price-desc">Profesionální úprava delších vlasů pro zdravý a stylový vzhled. Mytí hlavy, tvarování délky, ošetření konečků, úprava obočí, depilace nosu a uší, styling a kolínská. Ideální volba pro muže, kteří chtějí udržet své dlouhé vlasy v perfektní kondici. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-3" role="listitem">
           <span class="price-name">Střih dlouhých vlasů &amp; Úprava vousů</span>
           <span class="price-amount">970 Kč</span>
+          <p class="service-tagline">Kompletní péče o dlouhé vlasy i vousy.</p>
           <p class="price-desc">Kompletní péče o dlouhé vlasy i vousy. Mytí hlavy, tvarování délky, ošetření konečků, úprava obočí a depilace nosu a uší, styling a kolínská. Úprava vousů – precizní tvarování, zarovnání, horký ručník, kontury, olej, balzám a kolínská. Pro muže, kteří chtějí působit upraveně a zároveň přirozeně. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal" role="listitem">
           <span class="price-name">Úprava vousů</span>
           <span class="price-amount">370 Kč</span>
+          <p class="service-tagline">Precizní tvarování, zarovnání a kompletní ošetření vousů.</p>
           <p class="price-desc">Precizní tvarování, zarovnání a kompletní ošetření vousů. Horký ručník, kontury, úprava obočí, depilace nosu a uší, oleje, balzám a kolínská. Pro dokonale upravený vzhled a zdravé vousy. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-1" role="listitem">
           <span class="price-name">Classic střih &amp; Úprava vousů</span>
           <span class="price-amount">770 Kč</span>
+          <p class="service-tagline">Kompletní péče o vlasy i vousy v tradičním stylu.</p>
           <p class="price-desc">Kompletní péče o vlasy i vousy v tradičním stylu. Mytí hlavy, střih, úprava obočí, depilace nosu a uší, styling a kolínská. Úprava vousů – precizní tvarování, zarovnání, horký ručník, kontury, olej, balzám a kolínská. Pro upravený a vyvážený vzhled. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-2" role="listitem">
           <span class="price-name">Holení hlavy břitvou &amp; Úprava vousů</span>
           <span class="price-amount">670 Kč</span>
+          <p class="service-tagline">Luxusní procedura pro hladkou pokožku a dokonale upravené vousy.</p>
           <p class="price-desc">Luxusní procedura pro hladkou pokožku a dokonale upravené vousy. Tradiční holení břitvou, horký ručník, úprava obočí, depilace nosu a uší, kontury, oleje, balzám a kolínská. Pro muže, kteří chtějí precizní vzhled a maximální komfort. Součástí návštěvy je espresso nebo jiný nápoj.</p>
         </div>
 
         <div class="price-item reveal reveal-delay-3" role="listitem">
           <span class="price-name">Střih mladého Gentlemana</span>
           <span class="price-amount">400 Kč</span>
+          <p class="service-tagline">Stylový střih pro malé gentlemany.</p>
           <p class="price-desc">Stylový střih pro malé gentlemany. Přizpůsobený věku, typu vlasů a pohodlí dítěte. Čisté linie, jemné přechody a snadná údržba a styling. Součástí návštěvy je nealkoholický nápoj.</p>
         </div>
 
