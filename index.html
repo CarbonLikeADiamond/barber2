@@ -3,13 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Notorious Barbershop — Kyjov</title>
+  <title>Notorious Barbershop Kyjov — Prémiové pánské holičství</title>
+  <meta name="description" content="Notorious Barbershop Kyjov — prémiové pánské holičství na Masarykově náměstí. Klasické střihy, úprava vousů, hot towel holení. Rezervujte online." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://notorious-barbershop.cz/" />
+
+  <!-- Favicons -->
   <link rel="icon" type="image/png" href="images/notorious-barber-favicon-white.png" media="(prefers-color-scheme: dark)" />
   <link rel="icon" type="image/png" href="images/notorious-barber-favicon.png" media="(prefers-color-scheme: light)" />
-  <meta name="description" content="Notorious Barbershop Kyjov — prémiové pánské holičství. Klasické střihy, úprava vousů, hot towel holení. Rezervujte online." />
+  <link rel="apple-touch-icon" href="images/notorious-barber-favicon.png" />
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://notorious-barbershop.cz/" />
+  <meta property="og:site_name" content="Notorious Barbershop Kyjov" />
+  <meta property="og:locale" content="cs_CZ" />
+  <meta property="og:title" content="Notorious Barbershop Kyjov — Prémiové pánské holičství" />
+  <meta property="og:description" content="Prémiové pánské holičství v centru Kyjova. Klasické střihy, úprava vousů, hot towel holení. Espresso v ceně každé návštěvy." />
+  <meta property="og:image" content="https://notorious-barbershop.cz/images/hero.jpg" />
+  <meta property="og:image:width" content="1394" />
+  <meta property="og:image:height" content="948" />
+  <meta property="og:image:alt" content="Barber při práci v Notorious Barbershop Kyjov" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Notorious Barbershop Kyjov — Prémiové pánské holičství" />
+  <meta name="twitter:description" content="Prémiové pánské holičství v centru Kyjova. Klasické střihy, úprava vousů, hot towel holení." />
+  <meta name="twitter:image" content="https://notorious-barbershop.cz/images/hero.jpg" />
+  <meta name="twitter:image:alt" content="Barber při práci v Notorious Barbershop Kyjov" />
+
+  <!-- Google Fonts — async, neblokuje rendering -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://i.ytimg.com" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" /></noscript>
   <style>
     /* ─── CSS CUSTOM PROPERTIES ─── */
     :root {
@@ -90,6 +118,10 @@
       position: absolute;
       inset: 0;
       background: url('images/bg-street.jpg') center center / cover no-repeat;
+      background-image: -webkit-image-set(url('images/bg-street.webp') 1x);
+      background-image: image-set(url('images/bg-street.webp') type('image/webp'), url('images/bg-street.jpg') type('image/jpeg'));
+      background-size: cover;
+      background-position: center center;
       z-index: 0;
     }
     .header-bg::after {
@@ -418,6 +450,33 @@
       border: none;
       display: block;
     }
+    .yt-facade {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+    .yt-facade img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .yt-facade:hover img, .yt-facade:focus img { opacity: 1; outline: none; }
+    .yt-facade:focus { outline: 2px solid var(--color-gold); }
+    .yt-play-btn {
+      position: absolute;
+      width: 68px;
+      height: 48px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      transition: transform 0.2s;
+      pointer-events: none;
+    }
+    .yt-facade:hover .yt-play-btn, .yt-facade:focus .yt-play-btn { transform: scale(1.1); }
 
     /* ══════════════════════════════════════════
        SERVICES / CENÍK
@@ -1295,6 +1354,47 @@
       #back-to-top { bottom: 20px; right: 20px; }
     }
   </style>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Notorious Barbershop Kyjov",
+    "description": "Prémiové pánské holičství v centru Kyjova. Klasické střihy, úprava vousů, hot towel holení.",
+    "url": "https://notorious-barbershop.cz/",
+    "logo": "https://notorious-barbershop.cz/images/logo-notorious.svg",
+    "image": "https://notorious-barbershop.cz/images/hero.jpg",
+    "telephone": "+420771153666",
+    "email": "notoriousbs2019@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Masarykovo náměstí 17/6",
+      "addressLocality": "Kyjov",
+      "postalCode": "697 01",
+      "addressCountry": "CZ"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 49.0112,
+      "longitude": 17.1228
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday",    "opens": "09:00", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Tuesday",   "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday",  "opens": "08:00", "closes": "18:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday",    "opens": "08:00", "closes": "18:00" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/p/Notorious-Barbershop-100087989190905/",
+      "https://www.instagram.com/notorious_barbershop_/"
+    ],
+    "priceRange": "$$",
+    "currenciesAccepted": "CZK",
+    "paymentAccepted": "Cash, Credit Card"
+  }
+  </script>
 </head>
 <body>
 
@@ -1355,7 +1455,10 @@
       </div>
     </div>
     <div class="hero-photo">
-      <img src="images/hero.jpg" alt="Barber při práci v Notorious Barbershop Kyjov" loading="eager" />
+      <picture>
+        <source type="image/webp" srcset="images/hero.webp" />
+        <img src="images/hero.jpg" alt="Barber při práci v Notorious Barbershop Kyjov" loading="eager" fetchpriority="high" width="731" height="490" />
+      </picture>
       <div class="hero-photo-badge">
         <strong>+420 771 153 666</strong>
         <span>Masarykovo nám. 17/6, Kyjov</span>
@@ -1391,6 +1494,7 @@
       <div class="about-grid">
         <div class="about-text reveal">
           <span class="section-label">O nás</span>
+          <h2 class="about-heading" style="font-family:var(--font-display);font-size:clamp(28px,3vw,42px);font-weight:700;margin-bottom:20px;line-height:1.2;">Pánský barber<br /><em style="font-style:italic;color:var(--color-gold);">od roku 2020</em></h2>
           <blockquote class="about-quote">
             "Místo, kde se řemeslo stává uměním — a každý odchází jako gentleman."
           </blockquote>
@@ -1401,12 +1505,15 @@
         </div>
         <div class="about-video reveal reveal-delay-2">
           <div class="video-responsive">
-            <iframe
-              src="https://www.youtube.com/embed/qyPDmeirfkY?rel=0"
-              title="Notorious Barbershop — video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+            <div class="yt-facade" data-video-id="qyPDmeirfkY" role="button" tabindex="0" aria-label="Přehrát video Notorious Barbershop">
+              <img src="https://i.ytimg.com/vi/qyPDmeirfkY/hqdefault.jpg" alt="Notorious Barbershop — náhled videa" loading="lazy" width="480" height="360" />
+              <div class="yt-play-btn" aria-hidden="true">
+                <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56 0 34 0 34 0S12 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.1 0 24 0 24s0 11.9 1.5 16.3a8.5 8.5 0 0 0 6 6C12 48 34 48 34 48s22 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.9 68 24 68 24s0-11.9-1.5-16.3z" fill="#ff0000"/>
+                  <path d="M45 24L27 14v20" fill="#fff"/>
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1521,7 +1628,7 @@
     <div class="voucher-card reveal">
       <div class="voucher-frame">
         <div class="voucher-frame-inner">
-          <img src="images/poukaz.webp" alt="Dárkový poukaz Notorious Barbershop" class="voucher-img" />
+          <img src="images/poukaz.webp" alt="Dárkový poukaz Notorious Barbershop" class="voucher-img" width="560" height="263" loading="lazy" />
         </div>
       </div>
     </div>
@@ -1541,7 +1648,7 @@
       <div class="team-grid">
         <div class="team-card reveal">
           <div class="team-photo-wrap">
-            <img src="images/ondra.webp" alt="Ondra" class="team-photo" />
+            <img src="images/ondra.webp" alt="Ondra, barber v Notorious Barbershop Kyjov" class="team-photo" width="298" height="298" loading="lazy" />
           </div>
           <h3 class="team-name">Ondra</h3>
           <p class="team-role">Klasické střihy &amp; Tradice</p>
@@ -1550,7 +1657,7 @@
         </div>
         <div class="team-card reveal reveal-delay-2">
           <div class="team-photo-wrap">
-            <img src="images/tomas.webp" alt="Tomáš" class="team-photo" />
+            <img src="images/tomas.webp" alt="Tomáš, barber v Notorious Barbershop Kyjov" class="team-photo" width="298" height="298" loading="lazy" />
           </div>
           <h3 class="team-name">Tomáš</h3>
           <p class="team-role">Kreativní střihy &amp; Moderní styl</p>
@@ -1569,11 +1676,17 @@
         <h2 class="gallery-title">Výsledky hovoří<br /><em style="font-family:var(--font-display);font-style:italic;color:var(--color-gold);">za vše</em></h2>
       </div>
       <div class="gallery-grid" id="gallery-grid">
-        <div class="gallery-item reveal" data-lb-src="images/work-3.jpg" data-lb-alt="Výsledek střihu" tabindex="0" role="button" aria-label="Zobrazit: Výsledek střihu">
-          <img src="images/work-3.jpg" alt="Výsledek střihu" loading="lazy" />
+        <div class="gallery-item reveal" data-lb-src="images/work-3.webp" data-lb-alt="Precizní střih zákazníka v Notorious Barbershop Kyjov" tabindex="0" role="button" aria-label="Zobrazit: Precizní střih zákazníka">
+          <picture>
+            <source type="image/webp" srcset="images/work-3.webp" />
+            <img src="images/work-3.jpg" alt="Precizní střih zákazníka v Notorious Barbershop Kyjov" loading="lazy" />
+          </picture>
         </div>
-        <div class="gallery-item reveal reveal-delay-3" data-lb-src="images/work-2.jpg" data-lb-alt="Detail střihu" tabindex="0" role="button" aria-label="Zobrazit: Detail střihu">
-          <img src="images/work-2.jpg" alt="Detail střihu" loading="lazy" />
+        <div class="gallery-item reveal reveal-delay-3" data-lb-src="images/work-2.webp" data-lb-alt="Detail moderního střihu v Notorious Barbershop Kyjov" tabindex="0" role="button" aria-label="Zobrazit: Detail moderního střihu">
+          <picture>
+            <source type="image/webp" srcset="images/work-2.webp" />
+            <img src="images/work-2.jpg" alt="Detail moderního střihu v Notorious Barbershop Kyjov" loading="lazy" />
+          </picture>
         </div>
       </div>
     </div>
@@ -1830,6 +1943,26 @@
       });
     }
     fixCzechTypo(document.body);
+
+    // ── YouTube facade ──
+    (function () {
+      function loadVideo(facade) {
+        var id = facade.dataset.videoId;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + id + '?rel=0&autoplay=1';
+        iframe.title = 'Notorious Barbershop — video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+        facade.replaceWith(iframe);
+      }
+      document.querySelectorAll('.yt-facade').forEach(function (el) {
+        el.addEventListener('click', function () { loadVideo(el); });
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadVideo(el); }
+        });
+      });
+    })();
   </script>
 </body>
 </html>
