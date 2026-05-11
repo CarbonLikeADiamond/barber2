@@ -1408,7 +1408,7 @@
 
     <div class="header-logo">
       <a href="#hero" class="logo-link" aria-label="Notorious Barbershop — domů">
-        <img src="images/logo-notorious.svg" alt="Notorious Barbershop logo" class="logo-img" />
+        <img src="images/logo-notorious.svg" alt="Notorious Barbershop logo" class="logo-img" width="165" height="121" />
       </a>
     </div>
 
@@ -1846,7 +1846,7 @@
   <!-- Lightbox -->
   <div id="lightbox" role="dialog" aria-modal="true" aria-label="Prohlížeč fotografií">
     <div class="lb-img-wrap">
-      <img id="lb-img" src="" alt="" />
+      <img id="lb-img" src="" alt="" width="1200" height="900" />
     </div>
     <button id="lb-close" class="lb-btn" aria-label="Zavřít">✕</button>
     <button id="lb-prev"  class="lb-btn" aria-label="Předchozí">&#8592;</button>
@@ -1982,7 +1982,7 @@
         n.textContent = n.textContent.replace(/\b([aikovszuAIKOVSZU])\s+/g, '$1\u00a0');
       });
     }
-    requestAnimationFrame(() => setTimeout(() => fixCzechTypo(document.body), 0));
+    fixCzechTypo(document.body);
 
     // ── YouTube facade ──
     (function () {
