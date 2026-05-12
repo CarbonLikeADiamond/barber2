@@ -229,7 +229,6 @@
       display: grid;
       grid-template-columns: 2fr 3fr;
       min-height: calc(100vh - var(--nav-h));
-      overflow: hidden;
     }
     .hero-content {
       background: var(--bg-secondary);
@@ -346,6 +345,8 @@
        MARQUEE TICKER
     ══════════════════════════════════════════ */
     .marquee-strip {
+      position: relative;
+      z-index: 1;
       background: var(--bg-dark);
       padding: 14px 0;
       overflow: hidden;
@@ -1289,12 +1290,6 @@
       .gallery-grid { columns: 3; }
     }
 
-    @media (min-width: 901px) and (max-width: 1599px) {
-      #hero {
-        min-height: 0;
-        height: min(calc(100vh - var(--nav-h)), 42vw);
-      }
-    }
 
     @media (max-width: 900px) {
       .container { padding: 0 24px; }
