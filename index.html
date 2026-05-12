@@ -1252,6 +1252,83 @@
     #back-to-top.visible { display: flex; }
 
     /* ══════════════════════════════════════════
+       PRIVACY MODAL
+    ══════════════════════════════════════════ */
+    #privacy-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(28, 25, 23, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #privacy-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .privacy-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 48px;
+      position: relative;
+    }
+    .privacy-box h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--color-gold);
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+    .privacy-box h3 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin: 28px 0 10px;
+    }
+    .privacy-box p, .privacy-box li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--color-muted);
+    }
+    .privacy-box ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+    .privacy-box a {
+      color: var(--color-gold-lt);
+      text-underline-offset: 3px;
+    }
+    .privacy-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--color-muted);
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px 8px;
+    }
+    .privacy-close:hover { color: var(--color-text); }
+    @media (max-width: 600px) {
+      .privacy-box { padding: 32px 24px; }
+    }
+
+    /* ══════════════════════════════════════════
        SHAPE DIVIDERS — razor blade diagonal cuts
     ══════════════════════════════════════════ */
     #about, #services, #team, #gallery, #contact {
@@ -1779,6 +1856,8 @@
             </div>
           </div>
 
+          <p style="font-size:13px;line-height:1.7;color:var(--color-muted);margin-bottom:32px;">Ondřej Zelený, IČO:&nbsp;06735827, fyzická osoba podnikající na&nbsp;základě živnostenského oprávnění, zapsaná v&nbsp;živnostenském rejstříku.</p>
+
           <div class="contact-social reveal">
             <a href="https://www.facebook.com/p/Notorious-Barbershop-100087989190905/" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -1845,9 +1924,34 @@
       <div class="footer-bottom">
         <p class="footer-copy">© 2026 Notorious Barbershop. Všechna práva vyhrazena.</p>
         <p class="footer-addr">Masarykovo náměstí 17/6, 697 01 Kyjov</p>
+        <button id="privacy-link" style="background:none;border:none;cursor:pointer;font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.05em;padding:0;text-decoration:underline;text-underline-offset:3px;" aria-haspopup="dialog">Zásady ochrany osobních údajů</button>
       </div>
     </div>
   </footer>
+
+  <!-- Privacy modal -->
+  <div id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+    <div class="privacy-box">
+      <button class="privacy-close" id="privacy-close" aria-label="Zavřít">✕</button>
+      <h2 id="privacy-title">Zásady ochrany osobních údajů</h2>
+
+      <h3>Správce osobních údajů</h3>
+      <p>Notorious Barbershop, Masarykovo náměstí 17/6, 697&nbsp;01 Kyjov<br>
+      E-mail: <a href="mailto:notoriousbs2019@gmail.com">notoriousbs2019@gmail.com</a></p>
+
+      <h3>Co tento web zpracovává</h3>
+      <p>Web sám o&nbsp;sobě neukládá žádné cookies ani neshromažďuje osobní údaje návštěvníků. Na&nbsp;stránce jsou však integrovány služby třetích stran, které mohou při&nbsp;návštěvě zpracovávat technická data (zejména IP adresu):</p>
+      <ul>
+        <li><strong>Google Maps</strong> — mapa se načítá automaticky při&nbsp;zobrazení stránky. Společnost Google LLC tím může zpracovávat vaši IP&nbsp;adresu a&nbsp;technické informace o&nbsp;prohlížeči. Právní základ: oprávněný zájem (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;f) GDPR). Více informací: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Zásady ochrany soukromí Google</a>.</li>
+        <li><strong>YouTube</strong> — video se načte až po&nbsp;vašem kliknutí na&nbsp;přehrávač. Teprve tehdy může Google LLC zpracovávat technická data. Právní základ: souhlas (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;a) GDPR).</li>
+        <li><strong>Reservio</strong> — rezervace probíhají na&nbsp;platformě Reservio. Zpracování osobních údajů při&nbsp;rezervaci se řídí <a href="https://www.reservio.com/privacy-policy" target="_blank" rel="noopener">zásadami ochrany soukromí Reservio</a>.</li>
+      </ul>
+
+      <h3>Vaše práva</h3>
+      <p>Máte právo na&nbsp;přístup k&nbsp;osobním údajům, jejich opravu, výmaz, omezení zpracování, přenositelnost a&nbsp;vznést námitku. V&nbsp;případě dotazů nás kontaktujte na <a href="mailto:notoriousbs2019@gmail.com">notoriousbs2019@gmail.com</a>.</p>
+      <p>Máte právo podat stížnost u&nbsp;dozorového úřadu — <strong>Úřad pro ochranu osobních údajů</strong> (ÚOOÚ), Pplk.&nbsp;Sochora&nbsp;27, 170&nbsp;00 Praha&nbsp;7, <a href="https://www.uoou.cz" target="_blank" rel="noopener">www.uoou.cz</a>.</p>
+    </div>
+  </div>
 
   <!-- Back to top -->
   <button id="back-to-top" aria-label="Zpět nahoru" title="Zpět nahoru">↑</button>
@@ -1978,6 +2082,31 @@
         if (e.key === 'Escape')     closeLb();
         if (e.key === 'ArrowLeft')  showImg(current - 1);
         if (e.key === 'ArrowRight') showImg(current + 1);
+      });
+    })();
+
+    // ── Privacy modal ──
+    (function () {
+      var modal = document.getElementById('privacy-modal');
+      var openBtn  = document.getElementById('privacy-link');
+      var closeBtn = document.getElementById('privacy-close');
+
+      function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
       });
     })();
 
