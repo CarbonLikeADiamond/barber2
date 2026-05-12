@@ -1437,6 +1437,99 @@
       .gallery-grid { columns: 1; }
       #back-to-top { bottom: 20px; right: 20px; }
     }
+
+    /* ══════════════════════════════════════════
+       MAPS FACADE
+    ══════════════════════════════════════════ */
+    .maps-facade {
+      width: 100%;
+      height: 420px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .maps-facade:hover, .maps-facade:focus {
+      border-color: var(--color-gold);
+      outline: none;
+    }
+    .maps-facade-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      pointer-events: none;
+    }
+    .maps-facade-pin { color: var(--color-gold); }
+    .maps-facade-address {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--color-text);
+      text-align: center;
+      margin: 0;
+    }
+    .maps-facade-hint {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════════
+       COOKIE BAR
+    ══════════════════════════════════════════ */
+    #cookie-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 250;
+      background: var(--bg-dark);
+      border-top: 1px solid var(--color-gold);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    #cookie-bar p {
+      flex: 1;
+      min-width: 200px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      margin: 0;
+    }
+    #cookie-more {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--color-gold-lt);
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    #cookie-ok {
+      background: var(--color-gold);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 2px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    #cookie-ok:hover { background: #9a7820; }
   </style>
 
   <!-- Schema.org LocalBusiness -->
@@ -1889,13 +1982,17 @@
 
       <!-- Mapa na celou šířku -->
       <div class="contact-map-full reveal">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.987!2d17.1241!3d49.0113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47136a7f5c9e8b3f%3A0x5a3a8d9f0e2b1c4d!2sMasarykovo+n%C3%A1m%C4%9Bst%C3%AD+17%2F6%2C+697+01+Kyjov!5e0!3m2!1scs!2scz!4v1609459200000"
-          title="Mapa – Notorious Barbershop, Kyjov"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <div class="maps-facade" role="button" tabindex="0"
+          aria-label="Zobrazit polohu Notorious Barbershop na mapě Google"
+          data-embed="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.987!2d17.1241!3d49.0113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47136a7f5c9e8b3f%3A0x5a3a8d9f0e2b1c4d!2sMasarykovo+n%C3%A1m%C4%9Bst%C3%AD+17%2F6%2C+697+01+Kyjov!5e0!3m2!1scs!2scz!4v1609459200000">
+          <div class="maps-facade-inner">
+            <svg class="maps-facade-pin" width="32" height="40" viewBox="0 0 32 40" fill="none" aria-hidden="true">
+              <path d="M16 0C7.163 0 0 7.163 0 16c0 10.5 16 24 16 24S32 26.5 32 16C32 7.163 24.837 0 16 0zm0 22a6 6 0 1 1 0-12 6 6 0 0 1 0 12z" fill="currentColor"/>
+            </svg>
+            <p class="maps-facade-address">Masarykovo náměstí 17/6<br>697&nbsp;01 Kyjov</p>
+            <p class="maps-facade-hint">Kliknutím zobrazíte mapu Google</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1942,7 +2039,7 @@
       <h3>Co tento web zpracovává</h3>
       <p>Web sám o&nbsp;sobě neukládá žádné cookies ani neshromažďuje osobní údaje návštěvníků. Na&nbsp;stránce jsou však integrovány služby třetích stran, které mohou při&nbsp;návštěvě zpracovávat technická data (zejména IP adresu):</p>
       <ul>
-        <li><strong>Google Maps</strong> — mapa se načítá automaticky při&nbsp;zobrazení stránky. Společnost Google LLC tím může zpracovávat vaši IP&nbsp;adresu a&nbsp;technické informace o&nbsp;prohlížeči. Právní základ: oprávněný zájem (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;f) GDPR). Více informací: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Zásady ochrany soukromí Google</a>.</li>
+        <li><strong>Google Maps</strong> — mapa se načte až po&nbsp;vašem kliknutí na&nbsp;ni. Teprve tehdy může společnost Google LLC zpracovávat vaši IP&nbsp;adresu a&nbsp;technické informace o&nbsp;prohlížeči. Právní základ: souhlas (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;a) GDPR). Více informací: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Zásady ochrany soukromí Google</a>.</li>
         <li><strong>YouTube</strong> — video se načte až po&nbsp;vašem kliknutí na&nbsp;přehrávač. Teprve tehdy může Google LLC zpracovávat technická data. Právní základ: souhlas (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;a) GDPR).</li>
         <li><strong>Reservio</strong> — rezervace probíhají na&nbsp;platformě Reservio. Zpracování osobních údajů při&nbsp;rezervaci se řídí <a href="https://www.reservio.com/privacy-policy" target="_blank" rel="noopener">zásadami ochrany soukromí Reservio</a>.</li>
       </ul>
@@ -1955,6 +2052,12 @@
 
   <!-- Back to top -->
   <button id="back-to-top" aria-label="Zpět nahoru" title="Zpět nahoru">↑</button>
+
+  <!-- Cookie bar -->
+  <div id="cookie-bar">
+    <p>Tento web nepoužívá vlastní cookies. Po&nbsp;kliknutí na&nbsp;mapu nebo video může Google nastavit analytické cookies. <button id="cookie-more">Více&nbsp;info</button></p>
+    <button id="cookie-ok">Rozumím</button>
+  </div>
 
   <!-- Lightbox -->
   <div id="lightbox" role="dialog" aria-modal="true" aria-label="Prohlížeč fotografií">
@@ -2107,6 +2210,41 @@
       modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+      });
+    })();
+
+    // ── Maps facade ──
+    (function () {
+      function loadMap(facade) {
+        var iframe = document.createElement('iframe');
+        iframe.src = facade.dataset.embed;
+        iframe.title = 'Mapa – Notorious Barbershop, Kyjov';
+        iframe.allowFullscreen = true;
+        iframe.loading = 'lazy';
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        iframe.style.cssText = 'width:100%;height:100%;border:0;display:block;';
+        facade.replaceWith(iframe);
+      }
+      document.querySelectorAll('.maps-facade').forEach(function (el) {
+        el.addEventListener('click', function () { loadMap(el); });
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadMap(el); }
+        });
+      });
+    })();
+
+    // ── Cookie bar ──
+    (function () {
+      var bar = document.getElementById('cookie-bar');
+      if (localStorage.getItem('cookie-ok')) { bar.style.display = 'none'; return; }
+      document.getElementById('cookie-ok').addEventListener('click', function () {
+        localStorage.setItem('cookie-ok', '1');
+        bar.style.display = 'none';
+      });
+      document.getElementById('cookie-more').addEventListener('click', function () {
+        document.getElementById('privacy-modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('privacy-close').focus();
       });
     })();
 
