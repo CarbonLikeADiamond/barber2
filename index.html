@@ -229,6 +229,7 @@
       display: grid;
       grid-template-columns: 2fr 3fr;
       min-height: calc(100vh - var(--nav-h));
+      overflow: hidden;
     }
     .hero-content {
       background: var(--bg-secondary);
@@ -1290,7 +1291,8 @@
 
     @media (min-width: 901px) and (max-width: 1599px) {
       #hero {
-        max-height: 42vw;
+        min-height: 0;
+        height: min(calc(100vh - var(--nav-h)), 42vw);
       }
     }
 
