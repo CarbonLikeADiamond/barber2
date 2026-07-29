@@ -50,7 +50,7 @@ Everything lives in `index.html` — CSS → JS → HTML in that order within th
 
 **CSS custom properties** (`:root`): `--bg-*`, `--color-*`, `--font-*`, `--border-*`. Always use variables; never hardcode colours or fonts.
 
-**Section order** (DOM): `<header #site-header>` → `<main>` → `#hero` → `#about` → `#services` → `#voucher` → `#team` → `#gallery` → `#contact` → `</main>` → `<footer #footer>`
+**Section order** (DOM): `<header #site-header>` → `<main>` → `#hero` → `.marquee-strip` → `#careers` → `#about` → `#services` → `#voucher` → `#team` → `#gallery` → `#contact` → `</main>` → `<footer #footer>`
 
 **Shape dividers**: each section uses a CSS `::after` pseudo-element with a diagonal clip-path to visually cut into the next section's background colour. The mapping is in the `SHAPE DIVIDERS` CSS block — update it if section background colours change.
 

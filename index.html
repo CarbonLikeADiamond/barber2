@@ -374,6 +374,70 @@
     }
 
     /* ══════════════════════════════════════════
+       CAREERS / NÁBOR — DARK SECTION
+    ══════════════════════════════════════════ */
+    #careers {
+      background: var(--bg-dark);
+      padding: 80px 0 110px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Atmospheric gold ambient light in background */
+    #careers::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110%; height: 100%;
+      background: radial-gradient(ellipse at 50% 60%, rgba(184,146,42,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .careers-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .careers-label {
+      margin-bottom: 16px;
+      position: relative;
+    }
+    /* Decorative ornament below label */
+    .careers-label::after {
+      content: '';
+      display: block;
+      margin: 18px auto 0;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+    }
+    .careers-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin: 32px 0 24px;
+    }
+    .careers-title em {
+      font-style: italic;
+      color: var(--color-gold);
+    }
+    .careers-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 16px;
+    }
+    .careers-body-last {
+      margin-bottom: 32px;
+    }
+    .careers-cta-btn {
+      box-shadow: 0 8px 32px rgba(184,146,42,0.35);
+    }
+
+    /* ══════════════════════════════════════════
        ABOUT
     ══════════════════════════════════════════ */
     #about {
@@ -1331,10 +1395,11 @@
     /* ══════════════════════════════════════════
        SHAPE DIVIDERS — razor blade diagonal cuts
     ══════════════════════════════════════════ */
-    #about, #services, #team, #gallery, #contact {
+    #careers, #about, #services, #team, #gallery, #contact {
       position: relative;
     }
     /* Shared divider shape — right-to-left diagonal (razor sweep) */
+    #careers::after,
     #about::after,
     #services::after,
     #team::after,
@@ -1349,6 +1414,7 @@
       clip-path: polygon(100% 0, 100% 100%, 0 100%);
     }
     /* Each ::after uses the NEXT section's background */
+    #careers::after  { background: var(--bg-primary);   } /* → about    */
     #about::after    { background: var(--bg-secondary); } /* → services */
     #services::after { background: var(--bg-dark);      } /* → voucher  */
     #team::after     { background: var(--bg-primary);   } /* → gallery  */
@@ -1405,6 +1471,8 @@
       .hero-photo-badge { display: none; }
       .hero-content { padding: 56px 32px; }
       .hero-heading { font-size: clamp(40px, 10vw, 64px); }
+      /* Careers */
+      #careers { padding: 56px 0 88px; }
       /* About */
       .about-grid {
         grid-template-columns: 1fr;
@@ -1598,6 +1666,8 @@
         <li><a href="#gallery">GALERIE</a></li>
         <li class="nav-sep" aria-hidden="true">|</li>
         <li><a href="#contact">KONTAKT</a></li>
+        <li class="nav-sep" aria-hidden="true">|</li>
+        <li><a href="#careers">KARIÉRA</a></li>
       </ul>
 
       <div class="nav-social">
@@ -1668,6 +1738,30 @@
       <span>Gentleman Service</span><span class="dot">·</span>
     </div>
   </div>
+
+  <!-- ══ NÁBOR / KARIÉRA ══ -->
+  <section id="careers" aria-label="Nabídka práce">
+    <div class="container">
+      <div class="careers-inner">
+        <div class="careers-label reveal">
+          <span class="section-label" style="color:var(--color-gold-lt);">Přidej se k&nbsp;nám</span>
+        </div>
+        <h2 class="careers-title reveal">Hledáme barbera / <em>barberku</em></h2>
+        <p class="careers-body reveal reveal-delay-1">
+          Do našeho týmu v&nbsp;Kyjově hledáme šikovného barbera nebo barberku, kterému záleží na poctivém řemesle, detailu a&nbsp;kvalitním přístupu ke klientům.
+        </p>
+        <p class="careers-body reveal reveal-delay-1">
+          Nabízíme příjemné prostředí, zavedenou klientelu a&nbsp;férové podmínky.
+        </p>
+        <p class="careers-body careers-body-last reveal reveal-delay-2">
+          Máš zájem nebo víš o&nbsp;někom, kdo by se k&nbsp;nám hodil? Ozvi se nám.
+        </p>
+        <div class="careers-cta reveal reveal-delay-2">
+          <a href="tel:+420771153666" class="btn-primary careers-cta-btn">+420&nbsp;771&nbsp;153&nbsp;666</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ══ ABOUT ══ -->
   <section id="about" aria-label="O nás">
@@ -2008,6 +2102,7 @@
           <a href="#team">Tým</a>
           <a href="#gallery">Galerie</a>
           <a href="#contact">Kontakt</a>
+          <a href="#careers">Kariéra</a>
         </nav>
         <div class="footer-social">
           <a href="https://www.facebook.com/p/Notorious-Barbershop-100087989190905/" target="_blank" rel="noopener" aria-label="Facebook">
