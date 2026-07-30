@@ -376,14 +376,14 @@
     /* ══════════════════════════════════════════
        CAREERS / NÁBOR — DARK SECTION
     ══════════════════════════════════════════ */
-    #careers {
+    #kariera {
       background: var(--bg-dark);
       padding: 80px 0 110px;
       position: relative;
       overflow: hidden;
     }
     /* Atmospheric gold ambient light in background */
-    #careers::before {
+    #kariera::before {
       content: '';
       position: absolute;
       top: 50%; left: 50%;
@@ -1418,11 +1418,11 @@
     /* ══════════════════════════════════════════
        SHAPE DIVIDERS — razor blade diagonal cuts
     ══════════════════════════════════════════ */
-    #careers, #about, #services, #team, #gallery, #contact {
+    #kariera, #about, #services, #team, #gallery, #contact {
       position: relative;
     }
     /* Shared divider shape — right-to-left diagonal (razor sweep) */
-    #careers::after,
+    #kariera::after,
     #about::after,
     #services::after,
     #team::after,
@@ -1437,7 +1437,7 @@
       clip-path: polygon(100% 0, 100% 100%, 0 100%);
     }
     /* Each ::after uses the NEXT section's background */
-    #careers::after  { background: var(--bg-primary);   } /* → about    */
+    #kariera::after  { background: var(--bg-primary);   } /* → about    */
     #about::after    { background: var(--bg-secondary); } /* → services */
     #services::after { background: var(--bg-dark);      } /* → voucher  */
     #team::after     { background: var(--bg-primary);   } /* → gallery  */
@@ -1495,7 +1495,7 @@
       .hero-content { padding: 56px 32px; }
       .hero-heading { font-size: clamp(40px, 10vw, 64px); }
       /* Careers */
-      #careers { padding: 56px 0 88px; }
+      #kariera { padding: 56px 0 88px; }
       /* About */
       .about-grid {
         grid-template-columns: 1fr;
@@ -1690,7 +1690,7 @@
         <li class="nav-sep" aria-hidden="true">|</li>
         <li><a href="#contact">KONTAKT</a></li>
         <li class="nav-sep" aria-hidden="true">|</li>
-        <li><a href="#careers">KARIÉRA</a></li>
+        <li><a href="#kariera">KARIÉRA</a></li>
       </ul>
 
       <div class="nav-social">
@@ -1763,7 +1763,7 @@
   </div>
 
   <!-- ══ NÁBOR / KARIÉRA ══ -->
-  <section id="careers" aria-label="Nabídka práce">
+  <section id="kariera" aria-label="Nabídka práce">
     <div class="container">
       <div class="careers-inner">
         <div class="careers-label reveal">
@@ -2129,7 +2129,7 @@
           <a href="#team">Tým</a>
           <a href="#gallery">Galerie</a>
           <a href="#contact">Kontakt</a>
-          <a href="#careers">Kariéra</a>
+          <a href="#kariera">Kariéra</a>
         </nav>
         <div class="footer-social">
           <a href="https://www.facebook.com/p/Notorious-Barbershop-100087989190905/" target="_blank" rel="noopener" aria-label="Facebook">
